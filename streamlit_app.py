@@ -12,6 +12,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 # define here all data frames
 
 
@@ -25,7 +26,7 @@ top20_rf = pd.read_csv("archive/top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "DataVizualization", "Modelling1","Modelling2","Summary and Outlook"]
+pages=["Introduction", "Exploration", "DataVizualization", "Modelling1","Modelling2","Summary and Outlook", "Test Page"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -162,7 +163,7 @@ if  page == pages[4]:
     ypred_ab2=ab_model2.predict(X_test)
     ypred_gb2=gb_model2.predict(X_test)
 
-    from sklearn.metrics import accuracy_score
+    
 
     # Calculate accuracy scores
     accuracy_dt = accuracy_score(y_test, ypred_dt2)
@@ -223,3 +224,8 @@ if  page == pages[5]:
             variables into their calculations and could enhance our prediction model.
             .
     """)
+
+
+if  page == pages[6]:
+     st.write("This Page is just for testing!")
+
