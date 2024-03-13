@@ -8,13 +8,19 @@ from sklearn.datasets import make_classification
 from sklearn.metrics import confusion_matrix
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
-
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 # define here all data frames
 
 
 
 
-df = pd.read_csv("archive/train.csv")
+
+df = pd.read_csv("archive/Patrick_first.csv")
+df2 = pd.read_csv("archive/Patrick_second")
+top20_rf = pd.read_csv("archive/top20.csv")
 
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
@@ -52,7 +58,9 @@ if  page == pages[1]:
     st.write("### Presentation of Data")
 
     #display the first 10 lines of the dataframe
-    st.dataframe(df.head(10))
+    st.dataframe(df.head(20))
+    st.dataframe(df2.head(20))
+    st.dataframe(top20_rf.head(20))
 
 # write is like print in python and st.dataframe displays the dataframe 
     st.write(df.shape)
@@ -128,6 +136,45 @@ if  page == pages[3] :
         return clf
 if  page == pages[4]:
     st.write("#Data")
+    # modeling patrick
+   
+    X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
+    y = top20_rf['PlayerA_Wins']
+
+
+    # Train-test split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=573)
+
+    # Initialize the models
+    dt_model2 = DecisionTreeClassifier()
+    rf_model2 = RandomForestClassifier()
+    ab_model2 = AdaBoostClassifier()
+    gb_model2 = GradientBoostingClassifier()
+
+    # Fit the models
+    dt_model2.fit(X_train, y_train)
+    rf_model2.fit(X_train, y_train)
+    ab_model2.fit(X_train, y_train)
+    gb_model2.fit(X_train, y_train)
+    # predicting with the model
+    ypred_dt2=dt_model2.predict(X_test)
+    ypred_rf2=rf_model2.predict(X_test)
+    ypred_ab2=ab_model2.predict(X_test)
+    ypred_gb2=gb_model2.predict(X_test)
+
+    from sklearn.metrics import accuracy_score
+
+    # Calculate accuracy scores
+    accuracy_dt = accuracy_score(y_test, ypred_dt2)
+    accuracy_rf = accuracy_score(y_test, ypred_rf2)
+    accuracy_ab = accuracy_score(y_test, ypred_ab2)
+    accuracy_gb = accuracy_score(y_test, ypred_gb2)
+
+    # Display accuracy scores
+    st.write("Decision Tree Classifier Accuracy:", accuracy_dt)
+    st.write("Random Forest Classifier Accuracy:", accuracy_rf)
+    st.write("AdaBoost Classifier Accuracy:", accuracy_ab)
+    st.write("Gradient Boosting Classifier Accuracy:", accuracy_gb)
     #   Inserting an image from a file path
     st.image("archive/betting.png", caption='Match count', use_column_width=True)
    
