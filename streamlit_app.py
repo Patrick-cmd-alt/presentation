@@ -60,7 +60,7 @@ if  page == pages[1]:
 
     #display the first 10 lines of the dataframe
     st.dataframe(df.head(20))
-    st.dataframe("df:info", df.info())
+    st.dataframe(st.write(df_info), df.info())
     st.dataframe(df2.head(20))
     st.dataframe(top20_rf.head(20))
 
