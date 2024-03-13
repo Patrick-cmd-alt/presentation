@@ -147,6 +147,7 @@ if  page == pages[4]:
     st.image("archive/top-10-features.png", caption='Match count', use_column_width=True)
     st.image("archive/top-40-players-match-wins.png", caption='Match count', use_column_width=True)
     st.image("archive/top-40-players-tournament-wins.png", caption='Match count', use_column_width=True)
+
 if  page == pages[5]:
     st.write("""
                 We were able to train five different models that can correctly predict three out
