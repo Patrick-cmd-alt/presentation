@@ -59,9 +59,11 @@ if  page == pages[1]:
     st.write("### Presentation of Data")
 
     #display the first 10 lines of the dataframe
-    st.dataframe(df.head(20))
-    st.dataframe(st.write(df_info), df.info())
+    st.write(df.info())
+    st.dataframe(df.head(10))
+    st.write(df2.info())
     st.dataframe(df2.head(20))
+    st.write(top20_rf.info())
     st.dataframe(top20_rf.head(20))
 
 # write is like print in python and st.dataframe displays the dataframe 
