@@ -12,8 +12,9 @@ from sklearn.linear_model import LogisticRegression
 # define here all data frames
 
 
-df = pd.read_csv("archive\train.csv")
 
+
+df = pd.read_csv("archive/train.csv")
 
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
