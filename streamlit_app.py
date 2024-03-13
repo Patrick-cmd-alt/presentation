@@ -129,7 +129,7 @@ if  page == pages[3] :
 if  page == pages[4]:
     st.write("#Data")
     #   Inserting an image from a file path
-    st.image("archive\betting.png", caption='Match count', use_column_width=True)
+    st.image("archive/betting.png", caption='Match count', use_column_width=True)
    
 
     # Displaying each image individually
