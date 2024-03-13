@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 # define here all data frames
 
 
-df = pd.read_csv(r"C:\Users\Patrick\Documents\Streamlit\train.csv")
+df = pd.read_csv("archive\train.csv")
 
 
 # defines streamlit layout
@@ -64,7 +64,7 @@ if  page == pages[1]:
 if  page == pages[2] : 
     st.write("### DataVizualization")
 #   Inserting an image from a file path
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\betting.png"), caption='Match count', use_column_width=True)
+    st.image((archive\betting.png"), caption='Match count', use_column_width=True)
 
 
     #diplaying a countplot calculated from the data frame
@@ -127,24 +127,24 @@ if  page == pages[3] :
 if  page == pages[4]:
     st.write("#Data")
     #   Inserting an image from a file path
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\betting.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\betting.png"), caption='Match count', use_column_width=True)
    
 
     # Displaying each image individually
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\accuracy-score-models.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\betting.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\confusion-matrix-nn.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\confusion-matrix.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\dataframes-patrick.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\most-important-ada.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\most-important-dt.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\most-important-gb.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\most-important-nn.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\most-important-rf.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\nn-model.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\top-10-features.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\top-40-players-match-wins.png"), caption='Match count', use_column_width=True)
-    st.image((r"C:\Users\Patrick\Documents\Streamlit\pictures\top-40-players-tournament-wins.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\accuracy-score-models.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\betting.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\confusion-matrix-nn.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\confusion-matrix.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\dataframes-patrick.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\most-important-ada.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\most-important-dt.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\most-important-gb.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\most-important-nn.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\most-important-rf.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\nn-model.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\top-10-features.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\top-40-players-match-wins.png"), caption='Match count', use_column_width=True)
+    st.image((r"archive\top-40-players-tournament-wins.png"), caption='Match count', use_column_width=True)
 if  page == pages[5]:
     st.write("""
                 We were able to train five different models that can correctly predict three out
