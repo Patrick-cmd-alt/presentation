@@ -64,7 +64,7 @@ if  page == pages[1]:
 if  page == pages[2] : 
     st.write("### DataVizualization")
 #   Inserting an image from a file path
-    st.image((archive\betting.png"), caption='Match count', use_column_width=True)
+    st.image("archive\betting.png"), caption='Match count', use_column_width=True)
 
 
     #diplaying a countplot calculated from the data frame
@@ -131,20 +131,20 @@ if  page == pages[4]:
    
 
     # Displaying each image individually
-    st.image((r"archive\accuracy-score-models.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\betting.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\confusion-matrix-nn.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\confusion-matrix.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\dataframes-patrick.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\most-important-ada.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\most-important-dt.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\most-important-gb.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\most-important-nn.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\most-important-rf.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\nn-model.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\top-10-features.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\top-40-players-match-wins.png"), caption='Match count', use_column_width=True)
-    st.image((r"archive\top-40-players-tournament-wins.png"), caption='Match count', use_column_width=True)
+    st.image("archive\accuracy-score-models.png"), caption='Match count', use_column_width=True)
+    st.image("archive\betting.png"), caption='Match count', use_column_width=True)
+    st.image("archive\confusion-matrix-nn.png"), caption='Match count', use_column_width=True)
+    st.image("archive\confusion-matrix.png"), caption='Match count', use_column_width=True)
+    st.image("archive\dataframes-patrick.png"), caption='Match count', use_column_width=True)
+    st.image("archive\most-important-ada.png"), caption='Match count', use_column_width=True)
+    st.image("archive\most-important-dt.png"), caption='Match count', use_column_width=True)
+    st.image("archive\most-important-gb.png"), caption='Match count', use_column_width=True)
+    st.image("archive\most-important-nn.png"), caption='Match count', use_column_width=True)
+    st.image("archive\most-important-rf.png"), caption='Match count', use_column_width=True)
+    st.image("archive\nn-model.png"), caption='Match count', use_column_width=True)
+    st.image("archive\top-10-features.png"), caption='Match count', use_column_width=True)
+    st.image("archive\top-40-players-match-wins.png"), caption='Match count', use_column_width=True)
+    st.image("archive\top-40-players-tournament-wins.png"), caption='Match count', use_column_width=True)
 if  page == pages[5]:
     st.write("""
                 We were able to train five different models that can correctly predict three out
