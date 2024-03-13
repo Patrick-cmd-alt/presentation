@@ -20,7 +20,7 @@ from sklearn.metrics import accuracy_score
 
 
 df = pd.read_csv("archive/Patrick_first.csv")
-df2 = pd.read_csv("archive/Patrick_second")
+df2 = pd.read_csv("archive/Patrick_second.csv")
 top20_rf = pd.read_csv("archive/top20.csv")
 
 # defines streamlit layout
