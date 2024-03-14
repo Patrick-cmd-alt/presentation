@@ -10,9 +10,9 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
-from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from joblib import dump
 # define here all data frames
 
 
@@ -177,6 +177,21 @@ if  page == pages[5]:
     accuracy_ab = accuracy_score(y_test, ypred_ab2)
     accuracy_gb = accuracy_score(y_test, ypred_gb2)
 
+    
+
+    # Save Decision Tree model
+    dump(dt_model2, 'decision_tree_model.joblib')
+
+    # Save Random Forest model
+    dump(rf_model2, 'random_forest_model.joblib')
+
+    # Save AdaBoost model
+    dump(ab_model2, 'adaboost_model.joblib')
+
+    # Save Gradient Boosting model
+    dump(gb_model2, 'gradient_boosting_model.joblib')
+
+
     # Display accuracy scores
     st.write("Decision Tree Classifier Accuracy:", accuracy_dt)
     st.write("Random Forest Classifier Accuracy:", accuracy_rf)
@@ -186,12 +201,68 @@ if  page == pages[5]:
     st.image("archive/accuracy-score-models.png", caption='accuracy score models', use_column_width=True) 
     st.image("archive/confusion-matrix.png", caption='Confusion Matrix', use_column_width=True)
 
-    # Displaying each image individually
+  
     
     
     st.image("archive/betting.png", caption='Betting', use_column_width=True)
-
     
+    # to calculate metrics of the different models, uncomment the following code
+   """
+   
+
+    # Calculate accuracy for each model
+    accuracy_dt = accuracy_score(y_test, ypred_dt2)
+    accuracy_rf = accuracy_score(y_test, ypred_rf2)
+    accuracy_ab = accuracy_score(y_test, ypred_ab2)
+    accuracy_gb = accuracy_score(y_test, ypred_gb2)
+
+    # Calculate precision for each model
+    precision_dt = precision_score(y_test, ypred_dt2)
+    precision_rf = precision_score(y_test, ypred_rf2)
+    precision_ab = precision_score(y_test, ypred_ab2)
+    precision_gb = precision_score(y_test, ypred_gb2)
+
+    # Calculate recall for each model
+    recall_dt = recall_score(y_test, ypred_dt2)
+    recall_rf = recall_score(y_test, ypred_rf2)
+    recall_ab = recall_score(y_test, ypred_ab2)
+    recall_gb = recall_score(y_test, ypred_gb2)
+
+    # Calculate F1-score for each model
+    f1_dt = f1_score(y_test, ypred_dt2)
+    f1_rf = f1_score(y_test, ypred_rf2)
+    f1_ab = f1_score(y_test, ypred_ab2)
+    f1_gb = f1_score(y_test, ypred_gb2)
+
+    # Print the metrics for each model
+    print("Decision Tree:")
+    print("Accuracy:", accuracy_dt)
+    print("Precision:", precision_dt)
+    print("Recall:", recall_dt)
+    print("F1 Score:", f1_dt)
+    print()
+
+    print("Random Forest:")
+    print("Accuracy:", accuracy_rf)
+    print("Precision:", precision_rf)
+    print("Recall:", recall_rf)
+    print("F1 Score:", f1_rf)
+    print()
+
+    print("AdaBoost:")
+    print("Accuracy:", accuracy_ab)
+    print("Precision:", precision_ab)
+    print("Recall:", recall_ab)
+    print("F1 Score:", f1_ab)
+    print()
+
+    print("Gradient Boosting:")
+    print("Accuracy:", accuracy_gb)
+    print("Precision:", precision_gb)
+    print("Recall:", recall_gb)
+    print("F1 Score:", f1_gb)
+
+""" 
     
      
 
