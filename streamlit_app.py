@@ -26,7 +26,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2","Summary and Outlook", "Test Page", "Demo"]
+pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2","Summary and Outlook", "Test Page", "Demo", "Test Page 2"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -59,25 +59,33 @@ if page == pages[1]:
     st.write("### Presentation of Data")
 
     # Display the first 10 lines of the dataframe
-    # df.info()
+    # df data frame
     st.write("Initial Data Frame")
     st.dataframe(df.head(10))
     st.write("Info of Initial Data Frame")
-   
+    # info of 
+    st.dataframe(df.info())
+    st.write(df.shape)
+    st.dataframe(df.describe())
+    # df2 data frame
+
     st.write("Enginneerd Data Frame")
     st.dataframe(df2.head(20))
     st.write("Info of Engineered Data Frame")
+    
+    # info 0f
     st.dataframe(df2.info())
     st.write(df2.shape)
     st.dataframe(df2.describe())
 
-
+    # top 20 data frame 
     st.write("Top 20 features for Random Forest")
     st.dataframe(top20_rf.head(20))
+    
     st.write("Info of Top 20 features for Random Forest")
-    st.dataframe(df2.info())
-    st.write(df2.shape)
-    st.dataframe(df2.describe())
+    st.dataframe(top20_rf.info())
+    st.write(top20_rf.shape)
+    st.dataframe(top20_rf.describe())
 
 # write is like print in python and st.dataframe displays the dataframe 
    
@@ -243,3 +251,34 @@ if  page == pages[7]:
 if  page == pages[8]:
     st.write("###Modelling by Vahid")
     #fsfssf
+if  page == pages[9]:
+    st.write("###Modelling by Vahid")
+    
+    # Display the first 10 lines of the dataframe
+    # df data frame
+    st.write("Initial Data Frame")
+    
+    st.write("Info of Initial Data Frame")
+    # info of 
+    st.dataframe(df.info())
+    st.write(df.shape)
+    st.dataframe(df.describe())
+    # df2 data frame
+
+    st.write("Enginneerd Data Frame")
+   
+    st.write("Info of Engineered Data Frame")
+    
+    # info 0f
+    st.dataframe(df2.info())
+    st.write(df2.shape)
+    st.dataframe(df2.describe())
+
+    # top 20 data frame 
+    st.write("Top 20 features for Random Forest")
+    
+    
+    st.write("Info of Top 20 features for Random Forest")
+    st.dataframe(top20_rf.info())
+    st.write(top20_rf.shape)
+    st.dataframe(top20_rf.describe())
