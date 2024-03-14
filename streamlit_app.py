@@ -216,11 +216,11 @@ if  page == pages[5]:
 
 
 if  page == pages[6]:
-     st.write("This Page is just for testing!")
-     st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
-     st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
-     st.image("archive/most-important-nn.png", caption='Most Important NN', use_column_width=True)
-     st.image("archive/nn-model.png", caption='NN Model', use_column_width=True)
+    st.write("This Page is just for testing!")
+    st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
+    st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
+    st.image("archive/most-important-nn.png", caption='Most Important NN', use_column_width=True)
+    st.image("archive/nn-model.png", caption='NN Model', use_column_width=True)
 
      
     print("Type of top20_rf:", type(top20_rf))  # Check the type of top20_rf
