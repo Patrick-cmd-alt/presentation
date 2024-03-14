@@ -13,7 +13,7 @@ from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from joblib import load
-from joblib import dump
+
 
 # define here all data frames
 
@@ -267,7 +267,7 @@ if  page == pages[8]:
     st.write(top20_rf.info())
 if  page == pages[9]:
     st.write("###Modelling by Vahid")
-    
+    st.write("data")
     # Display the first 10 lines of the dataframe
     # df data frame
     st.write("Initial Data Frame")
