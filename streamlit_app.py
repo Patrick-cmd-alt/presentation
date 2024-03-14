@@ -82,19 +82,50 @@ if  page == pages[2] :
     st.write("### DataVizualization")
 #   Inserting an image from a file path
  
-    st.image("archive/betting.png", caption='Match count', use_column_width=True)
+    
+    st.image("archive/atp-point-dist.png", caption='ATP Point Distribution', use_column_width=True)
+    st.image("archive/b365-odds-dist.png", caption='B365 Odds Distribution', use_column_width=True)
+    
+    st.image("archive/bottom-25-elo-rates.png", caption='Bottom 25 Elo Rates', use_column_width=True)
+    st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
+    st.image("archive/confusion-matrix.png", caption='Confusion Matrix', use_column_width=True)
+    
+    st.image("archive/elo-rate-field-type-dist.png", caption='Elo Rate Field Type Distribution', use_column_width=True)
+    st.image("archive/elo-rates-dist.png", caption='Elo Rates Distribution', use_column_width=True)
+    st.image("archive/match-count-field-type-dist.png", caption='Match Count Field Type Distribution', use_column_width=True)
+    st.image("archive/match-count-year-dist.png", caption='Match Count Year Distribution', use_column_width=True)
+    
+
+    st.image("archive/ps-odds-dist.png", caption='PS Odds Distribution', use_column_width=True)
+    st.image("archive/top-10-features.png", caption='Top 10 Features', use_column_width=True)
+    st.image("archive/top-10-elo-rates-indoor-carpet.png", caption='Top 10 Elo Rates Indoor Carpet', use_column_width=True)
+    st.image("archive/top-10-elo-rates-indoor-clay.png", caption='Top 10 Elo Rates Indoor Clay', use_column_width=True)
+    st.image("archive/top-10-elo-rates-indoor-hard.png", caption='Top 10 Elo Rates Indoor Hard', use_column_width=True)
+    st.image("archive/top-10-elo-rates-outdoor-clay.png", caption='Top 10 Elo Rates Outdoor Clay', use_column_width=True)
+    st.image("archive/top-10-elo-rates-outdoor-grass.png", caption='Top 10 Elo Rates Outdoor Grass', use_column_width=True)
+    st.image("archive/top-10-elo-rates-outdoor-hard.png", caption='Top 10 Elo Rates Outdoor Hard', use_column_width=True)
+    st.image("archive/top-25-elo-rates.png", caption='Top 25 Elo Rates', use_column_width=True)
+    st.image("archive/top-40-players-match-wins.png", caption='Top 40 Players Match Wins', use_column_width=True)
+    st.image("archive/top-40-players-tournament-wins.png", caption='Top 40 Players Tournament Wins', use_column_width=True)
 
 
 
 
 
 if  page == pages[3]:
-    at.write("###Modelling by Vahid")
+    st.write("###Modelling by Vahid")
 
 
 if  page == pages[4]:
     st.write("#Data")
     # modeling patrick
+    st.write("###Modelling by Vahid")
+    st.image("archive/most-important-ada.png", caption='Most Important ADA', use_column_width=True)
+    st.image("archive/most-important-dt.png", caption='Most Important DT', use_column_width=True)
+    st.image("archive/most-important-gb.png", caption='Most Important GB', use_column_width=True)
+    st.image("archive/most-important-nn.png", caption='Most Important NN', use_column_width=True)
+    st.image("archive/most-important-rf.png", caption='Most Important RF', use_column_width=True)
+    st.image("archive/nn-model.png", caption='NN Model', use_column_width=True)
    
     X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
     y = top20_rf['PlayerA_Wins']
@@ -139,19 +170,16 @@ if  page == pages[4]:
 
     # Displaying each image individually
     st.image("archive/accuracy-score-models.png", caption='Match count', use_column_width=True)
-    st.image("archive/betting.png", caption='Match count', use_column_width=True)
-    st.image("archive/confusion-matrix-nn.png", caption='Match count', use_column_width=True)
-    st.image("archive/confusion-matrix.png", caption='Match count', use_column_width=True)
-    st.image("archive/dataframes-patrick.png", caption='Match count', use_column_width=True)
-    st.image("archive/most-important-ada.png", caption='Match count', use_column_width=True)
-    st.image("archive/most-important-dt.png", caption='Match count', use_column_width=True)
-    st.image("archive/most-important-gb.png", caption='Match count', use_column_width=True)
-    st.image("archive/most-important-nn.png", caption='Match count', use_column_width=True)
-    st.image("archive/most-important-rf.png", caption='Match count', use_column_width=True)
-    st.image("archive/nn-model.png", caption='Match count', use_column_width=True)
-    st.image("archive/top-10-features.png", caption='Match count', use_column_width=True)
-    st.image("archive/top-40-players-match-wins.png", caption='Match count', use_column_width=True)
-    st.image("archive/top-40-players-tournament-wins.png", caption='Match count', use_column_width=True)
+    
+    st.image("archive/betting.png", caption='Betting', use_column_width=True)
+
+    
+    st.image("archive/confusion-matrix.png", caption='Confusion Matrix', use_column_width=True)
+    st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
+    
+
+
+
 
 if  page == pages[5]:
     st.write("""
@@ -186,3 +214,4 @@ if  page == pages[5]:
 if  page == pages[6]:
      st.write("This Page is just for testing!")
 
+     st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
