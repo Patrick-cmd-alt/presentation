@@ -385,7 +385,7 @@ if  page == pages[10]:
         elif choice == 'Confusion matrix':
             return confusion_matrix(y_test, clf.predict(X_test))
         
-    choice = ['Random Forest', 'AdaBoost', 'DecisionTree", "GradientBoosting']
+    choice = ['Random Forest', 'AdaBoost', "DecisionTree", "GradientBoosting"]
     option = st.selectbox('Choice of the model', choice)
     st.write('The chosen model is :', option)
 
