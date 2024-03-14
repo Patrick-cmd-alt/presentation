@@ -60,9 +60,9 @@ if  page == pages[1]:
 
     #display the first 10 lines of the dataframe
     st.write("Initial Data Frame")
-    st.dataframe(df.info())
-    st.dataframe(df.describe())
+    
     st.dataframe(df.head(10))
+    st.dataframe(df.info())
 
     st.write("Enginneerd Data Frame")
     st.dataframe(df2.info())
