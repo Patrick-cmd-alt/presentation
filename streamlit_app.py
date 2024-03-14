@@ -55,22 +55,25 @@ if  page == pages[0]:
     """)
 
 #defines text on first page [second headline]
-if  page == pages[1]:
+if page == pages[1]:
     st.write("### Presentation of Data")
 
-    #display the first 10 lines of the dataframe
+    # Display the first 10 lines of the dataframe
     st.write("Initial Data Frame")
-    
     st.dataframe(df.head(10))
-    st.dataframe(df.info())
+    st.write("Info of Initial Data Frame")
+    st.write(df.info())
 
     st.write("Enginneerd Data Frame")
-    st.dataframe(df2.info())
     st.dataframe(df2.head(20))
+    st.write("Info of Engineered Data Frame")
+    st.write(df2.info())
 
     st.write("Top 20 features for Random Forest")
-    st.dataframe(top20_rf.info())
     st.dataframe(top20_rf.head(20))
+    st.write("Info of Top 20 features for Random Forest")
+    st.write(top20_rf.info())
+
 
 # write is like print in python and st.dataframe displays the dataframe 
    
