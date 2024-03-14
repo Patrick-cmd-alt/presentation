@@ -63,20 +63,21 @@ if page == pages[1]:
     st.write("Initial Data Frame")
     st.dataframe(df.head(10))
     st.write("Info of Initial Data Frame")
-    st.dataframe(df.info())
-    st.write(df.shape)
-    st.dataframe(df.describe())
-
+   
     st.write("Enginneerd Data Frame")
     st.dataframe(df2.head(20))
     st.write("Info of Engineered Data Frame")
-    df2.describe()
+    st.dataframe(df2.info())
+    st.write(df2.shape)
+    st.dataframe(df2.describe())
+
 
     st.write("Top 20 features for Random Forest")
     st.dataframe(top20_rf.head(20))
     st.write("Info of Top 20 features for Random Forest")
-    st.write(top20_rf.info())
-
+    st.dataframe(df2.info())
+    st.write(df2.shape)
+    st.dataframe(df2.describe())
 
 # write is like print in python and st.dataframe displays the dataframe 
    
