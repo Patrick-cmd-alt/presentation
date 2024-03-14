@@ -187,17 +187,7 @@ if  page == pages[5]:
         st.dataframe(scores(clf, display))
 
 
-    # Save Decision Tree model
-    dump(dt_model2, 'decision_tree_model.joblib')
-
-    # Save Random Forest model
-    dump(rf_model2, 'random_forest_model.joblib')
-
-    # Save AdaBoost model
-    dump(ab_model2, 'adaboost_model.joblib')
-
-    # Save Gradient Boosting model
-    dump(gb_model2, 'gradient_boosting_model.joblib')
+    
 
    
   
