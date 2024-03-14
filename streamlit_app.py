@@ -59,16 +59,20 @@ if  page == pages[1]:
     st.write("### Presentation of Data")
 
     #display the first 10 lines of the dataframe
-    st.write(df.info())
+    st.write("Initial Data Frame")
+    st.dataframe(df.info)
     st.dataframe(df.head(10))
-    st.write(df2.info())
+
+    st.write("Enginneerd Data Frame")
+    st.dataframe(df2.info())
     st.dataframe(df2.head(20))
-    st.write(top20_rf.info())
+
+    st.write("Top 20 features for Random Forest")
+    st.dataframe(top20_rf.info())
     st.dataframe(top20_rf.head(20))
 
 # write is like print in python and st.dataframe displays the dataframe 
-    st.write(df.shape)
-    st.dataframe(df.describe())
+   
 # greates a checkbox to show non null characters
     if st.checkbox("Show NA") :
         st.dataframe(df.isna().sum())
@@ -81,6 +85,11 @@ if  page == pages[2] :
     st.image("archive/betting.png", caption='Match count', use_column_width=True)
 
 
+
+
+
+if  page == pages[3]:
+    at.write("###Modelling by Vahid")
 
 
 if  page == pages[4]:
