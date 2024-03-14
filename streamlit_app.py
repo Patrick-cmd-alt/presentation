@@ -319,13 +319,13 @@ if  page == pages[10]:
 
 def prediction(classifier):
     if classifier == 'Random Forest':
-        clf = joblib.load('archive/random_forest_model.joblib')
+        clf = load('archive/random_forest_model.joblib')
     elif classifier == 'AdaBoost':
-        clf = joblib.load('archive/adaboost_model.joblib')
+        clf = load('archive/adaboost_model.joblib')
     elif classifier == 'DecisionTree':
-        clf = joblib.load("archive/decision_tree_model.joblib")
+        clf = load("archive/decision_tree_model.joblib")
     elif classifier == "GradientBoosting":
-        clf = joblib.load('archive/gradient_boosting_model.joblib')
+        clf = load('archive/gradient_boosting_model.joblib')
     return clf
 
 def scores(clf, choice):
