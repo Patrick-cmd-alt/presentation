@@ -26,7 +26,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2","Summary and Outlook", "Demo", "Test Page1", "Test Page 2"]
+pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2","Summary and Outlook", "Demo", "Test Page1", "Test Page 2", "Test Page 3"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -354,3 +354,34 @@ if  page == pages[9]:
     st.dataframe(top20_rf.info())
     st.write(top20_rf.shape)
     st.dataframe(top20_rf.describe())
+
+if  page == pages[10]:
+
+    # THIS PAGE IS FOR TESTING CHOICE BOXES
+
+    def prediction(classifier):
+        if classifier == 'Random Forest':
+            clf = RandomForestClassifier()
+        elif classifier == 'SVC':
+            clf = SVC()
+        elif classifier == 'Logistic Regression':
+            clf = LogisticRegression()
+        clf.fit(X_train, y_train)
+        return clf
+
+    def scores(clf, choice):
+        if choice == 'Accuracy':
+            return clf.score(X_test, y_test)
+        elif choice == 'Confusion matrix':
+            return confusion_matrix(y_test, clf.predict(X_test))
+        
+    choice = ['Random Forest', 'SVC', 'Logistic Regression']
+    option = st.selectbox('Choice of the model', choice)
+    st.write('The chosen model is :', option)
+
+    clf = prediction(option)
+    display = st.radio('What do you want to show ?', ('Accuracy', 'Confusion matrix'))
+    if display == 'Accuracy':
+        st.write(scores(clf, display))
+    elif display == 'Confusion matrix':
+        st.dataframe(scores(clf, display))
