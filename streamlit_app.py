@@ -125,7 +125,7 @@ if  page == pages[4]:
     st.image("archive/most-important-gb.png", caption='Most Important GB', use_column_width=True)
    
     st.image("archive/most-important-rf.png", caption='Most Important RF', use_column_width=True)
-    st.image("archive/nn-model.png", caption='NN Model', use_column_width=True)
+    
     st.image("archive/top-10-features.png", caption='Top 10 Features', use_column_width=True)
    
     X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
@@ -216,4 +216,4 @@ if  page == pages[6]:
      st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
      st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
      st.image("archive/most-important-nn.png", caption='Most Important NN', use_column_width=True)
-    
+     st.image("archive/nn-model.png", caption='NN Model', use_column_width=True)
