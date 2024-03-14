@@ -207,7 +207,7 @@ if  page == pages[5]:
     st.image("archive/betting.png", caption='Betting', use_column_width=True)
     
     # to calculate metrics of the different models, uncomment the following code
-   """
+    """
    
 
     # Calculate accuracy for each model
@@ -262,7 +262,7 @@ if  page == pages[5]:
     print("Recall:", recall_gb)
     print("F1 Score:", f1_gb)
 
-""" 
+    """ 
     
      
 
