@@ -26,7 +26,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "DataVizualization", "Modelling1","Modelling2","Summary and Outlook", "Test Page", "Demo", "Betting Strategies"]
+pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies"  "Modelling1","Modelling2","Summary and Outlook", "Test Page", "Demo"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -114,14 +114,15 @@ if  page == pages[2]:
     st.image("archive/top-40-players-tournament-wins.png", caption='Top 40 Players Tournament Wins', use_column_width=True)
 
 
-
-
-
 if  page == pages[3]:
     st.write("###Modelling by Vahid")
 
 
 if  page == pages[4]:
+    st.write("###Modelling by Vahid")
+
+
+if  page == pages[5]:
     st.write("#Data")
     # modeling patrick
     st.write("###Modelling by Patrick")
@@ -186,7 +187,7 @@ if  page == pages[4]:
 
 
 
-if  page == pages[5]:
+if  page == pages[6]:
     st.write("""
                 We were able to train five different models that can correctly predict three out
             of four tennis matches. Furthermore, we identified the most important features for
@@ -216,7 +217,7 @@ if  page == pages[5]:
     """)
 
 
-if  page == pages[6]:
+if  page == pages[7]:
     st.write("This Page is just for testing!")
     st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
     st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
@@ -235,8 +236,7 @@ if  page == pages[6]:
     st.write("Info of Top 20 features for Random Forest")
     st.write(top20_rf.info())
 
-if  page == pages[7]:
-    st.write("###Modelling by Vahid")
+
 if  page == pages[8]:
     st.write("###Modelling by Vahid")
     #
