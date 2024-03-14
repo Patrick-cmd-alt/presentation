@@ -68,7 +68,7 @@ if page == pages[1]:
     st.write("Enginneerd Data Frame")
     st.dataframe(df2.head(20))
     st.write("Info of Engineered Data Frame")
-    st.write(df2.info())
+    df2.describe()
 
     st.write("Top 20 features for Random Forest")
     st.dataframe(top20_rf.head(20))
