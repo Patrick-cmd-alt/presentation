@@ -78,7 +78,7 @@ if  page == pages[1]:
         st.dataframe(df.isna().sum())
 
 # heading for the second page of the webapplication
-if  page == pages[2] : 
+if  page == pages[2]: 
     st.write("### DataVizualization")
 #   Inserting an image from a file path
  
@@ -119,7 +119,7 @@ if  page == pages[3]:
 if  page == pages[4]:
     st.write("#Data")
     # modeling patrick
-    st.write("###Modelling by Vahid")
+    st.write("###Modelling by Patrick")
     st.image("archive/most-important-ada.png", caption='Most Important ADA', use_column_width=True)
     st.image("archive/most-important-dt.png", caption='Most Important DT', use_column_width=True)
     st.image("archive/most-important-gb.png", caption='Most Important GB', use_column_width=True)
