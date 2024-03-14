@@ -43,7 +43,7 @@ if  page == pages[0]:
     understand which features influence the outcome of a tennis game. Additionally, we 
     intend to develop a betting strategy that minimizes investment losses and maximizes 
     return on investment by placing bets on the odds provided by two bookmakers: Bet365 
-    and Pinnacle Sports. In general, we aim to develop a betting tool which:
+    and Pinnacle Sports. In general, we aim to develop a betting tool which :
     
     1. Predicts tennis matches with high accuracy.
     2. Yields a net plus when betting money on tennis matches on Bet 365 and Pinnacle 
