@@ -360,22 +360,33 @@ if  page == pages[10]:
     # THIS PAGE IS FOR TESTING CHOICE BOXES
 
     def prediction(classifier):
-        if classifier == 'Random Forest':
-            clf = RandomForestClassifier()
-        elif classifier == 'SVC':
-            clf = SVC()
-        elif classifier == 'Logistic Regression':
-            clf = LogisticRegression()
-        clf.fit(X_train, y_train)
-        return clf
+         X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
+         y = top20_rf['PlayerA_Wins']
 
+
+         # Train-test split
+         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=573)
+         if classifier == 'Random Forest':
+             clf = RandomForestClassifier()
+         elif classifier == 'AdaBoost':
+             clf = AdaBoostClassifier()
+         elif classifier == 'DecisionTree':
+            clf = DecisionTreeClassifier()
+         elif classifier == "GradientBoosting":
+             clf = GradientBoostingClassifier()
+         clf.fit(X_train, y_train)
+         return clf
+
+  
+    
+    
     def scores(clf, choice):
         if choice == 'Accuracy':
             return clf.score(X_test, y_test)
         elif choice == 'Confusion matrix':
             return confusion_matrix(y_test, clf.predict(X_test))
         
-    choice = ['Random Forest', 'SVC', 'Logistic Regression']
+    choice = ['Random Forest', 'AdaBoost', 'DecisionTree, GradientBoosting']
     option = st.selectbox('Choice of the model', choice)
     st.write('The chosen model is :', option)
 
