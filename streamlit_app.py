@@ -184,7 +184,6 @@ if  page == pages[5]:
     elif display == 'Confusion matrix':
         st.dataframe(scores(clf, display))
 
-    """"
 
     # Save Decision Tree model
     dump(dt_model2, 'decision_tree_model.joblib')
@@ -198,11 +197,11 @@ if  page == pages[5]:
     # Save Gradient Boosting model
     dump(gb_model2, 'gradient_boosting_model.joblib')
 
-    """
+   
   
     #   Inserting an image from a file path
     st.image("archive/accuracy-score-models.png", caption='accuracy score models', use_column_width=True) 
-    st.image("archive/confusion-matrix.png", caption='Confusion Matrix', use_column_width=True)
+    
 
   
     
@@ -210,62 +209,10 @@ if  page == pages[5]:
     st.image("archive/betting.png", caption='Betting', use_column_width=True)
     
     # to calculate metrics of the different models, uncomment the following code
-    """
+  
    
 
-    # Calculate accuracy for each model
-    accuracy_dt = accuracy_score(y_test, ypred_dt2)
-    accuracy_rf = accuracy_score(y_test, ypred_rf2)
-    accuracy_ab = accuracy_score(y_test, ypred_ab2)
-    accuracy_gb = accuracy_score(y_test, ypred_gb2)
 
-    # Calculate precision for each model
-    precision_dt = precision_score(y_test, ypred_dt2)
-    precision_rf = precision_score(y_test, ypred_rf2)
-    precision_ab = precision_score(y_test, ypred_ab2)
-    precision_gb = precision_score(y_test, ypred_gb2)
-
-    # Calculate recall for each model
-    recall_dt = recall_score(y_test, ypred_dt2)
-    recall_rf = recall_score(y_test, ypred_rf2)
-    recall_ab = recall_score(y_test, ypred_ab2)
-    recall_gb = recall_score(y_test, ypred_gb2)
-
-    # Calculate F1-score for each model
-    f1_dt = f1_score(y_test, ypred_dt2)
-    f1_rf = f1_score(y_test, ypred_rf2)
-    f1_ab = f1_score(y_test, ypred_ab2)
-    f1_gb = f1_score(y_test, ypred_gb2)
-
-    # Print the metrics for each model
-    print("Decision Tree:")
-    print("Accuracy:", accuracy_dt)
-    print("Precision:", precision_dt)
-    print("Recall:", recall_dt)
-    print("F1 Score:", f1_dt)
-    print()
-
-    print("Random Forest:")
-    print("Accuracy:", accuracy_rf)
-    print("Precision:", precision_rf)
-    print("Recall:", recall_rf)
-    print("F1 Score:", f1_rf)
-    print()
-
-    print("AdaBoost:")
-    print("Accuracy:", accuracy_ab)
-    print("Precision:", precision_ab)
-    print("Recall:", recall_ab)
-    print("F1 Score:", f1_ab)
-    print()
-
-    print("Gradient Boosting:")
-    print("Accuracy:", accuracy_gb)
-    print("Precision:", precision_gb)
-    print("Recall:", recall_gb)
-    print("F1 Score:", f1_gb)
-
-    """ 
     
      
 
@@ -366,35 +313,32 @@ if  page == pages[10]:
     y = top20_rf['PlayerA_Wins']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5739)
      
-    def prediction(classifier):
-         
-        if classifier == 'Random Forest':
-            clf = RandomForestClassifier()
-        elif classifier == 'AdaBoost':
-            clf = AdaBoostClassifier()
-        elif classifier == 'DecisionTree':
-            clf = DecisionTreeClassifier()
-        elif classifier == "GradientBoosting":
-            clf = GradientBoostingClassifier()
-        clf.fit(X_train, y_train)
-        return clf
-
-  
     
-    
-    def scores(clf, choice):
-        if choice == 'Accuracy':
-            return clf.score(X_test, y_test)
-        elif choice == 'Confusion matrix':
-            return confusion_matrix(y_test, clf.predict(X_test))
-        
-    choice = ['Random Forest', 'AdaBoost', "DecisionTree", "GradientBoosting"]
-    option = st.selectbox('Choice of the model', choice)
-    st.write('The chosen model is :', option)
 
-    clf = prediction(option)
-    display = st.radio('What do you want to show ?', ('Accuracy', 'Confusion matrix'))
-    if display == 'Accuracy':
-        st.write(scores(clf, display))
-    elif display == 'Confusion matrix':
-        st.dataframe(scores(clf, display))
+def prediction(classifier):
+    if classifier == 'Random Forest':
+        clf = load('random_forest_model.joblib')
+    elif classifier == 'AdaBoost':
+        clf = load('adaboost_model.joblib')
+    elif classifier == 'DecisionTree':
+        clf = load('decision_tree_model.joblib')
+    elif classifier == "GradientBoosting":
+        clf = load('gradient_boosting_model.joblib')
+    return clf
+
+def scores(clf, choice):
+    if choice == 'Accuracy':
+        return clf.score(X_test, y_test)
+    elif choice == 'Confusion matrix':
+        return confusion_matrix(y_test, clf.predict(X_test))
+
+choice = ['Random Forest', 'AdaBoost', "DecisionTree", "GradientBoosting"]
+option = st.selectbox('Choice of the model', choice)
+st.write('The chosen model is :', option)
+
+clf = prediction(option)
+display = st.radio('What do you want to show ?', ('Accuracy', 'Confusion matrix'))
+if display == 'Accuracy':
+    st.write(scores(clf, display))
+elif display == 'Confusion matrix':
+    st.dataframe(scores(clf, display))
