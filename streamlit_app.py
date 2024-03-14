@@ -26,7 +26,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2","Summary and Outlook", "Test Page", "Demo", "Test Page 2"]
+pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2","Summary and Outlook", "Demo", "Test Page1", "Test Page 2"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -229,6 +229,12 @@ if  page == pages[6]:
 
 
 if  page == pages[7]:
+    st.write("Here comes the demo of the model")
+   
+
+
+if  page == pages[8]:
+    st.write("###Modelling by Vahid")
     st.write("This Page is just for testing!")
     st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
     st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
@@ -246,11 +252,6 @@ if  page == pages[7]:
     st.dataframe(top20_rf.head(20))
     st.write("Info of Top 20 features for Random Forest")
     st.write(top20_rf.info())
-
-
-if  page == pages[8]:
-    st.write("###Modelling by Vahid")
-    #fsfssf
 if  page == pages[9]:
     st.write("###Modelling by Vahid")
     
