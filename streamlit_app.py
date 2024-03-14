@@ -1,4 +1,3 @@
-#!/bin/usr/env python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -14,8 +13,6 @@ from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import os.path
-import joblib
 # define here all data frames
 
 
@@ -90,6 +87,8 @@ if  page == pages[2]:
     st.write("### DataVizualization")
 #   Inserting an image from a file path
  
+    
+    
     st.image("archive/match-count-year-dist.png", caption='Match Count Year Distribution', use_column_width=True)
     st.image("archive/elo-rates-dist.png", caption='Elo Rates Distribution', use_column_width=True)
     st.image("archive/top-25-elo-rates.png", caption='Top 25 Elo Rates', use_column_width=True)
@@ -141,29 +140,22 @@ if  page == pages[4]:
     # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=573)
 
+    # Initialize the models
+    dt_model2 = DecisionTreeClassifier()
+    rf_model2 = RandomForestClassifier()
+    ab_model2 = AdaBoostClassifier()
+    gb_model2 = GradientBoostingClassifier()
 
-    if os.path.exists("archive/model_dt.pkl"):
-        dt_model2 = joblib.load("archive/model_dt.pkl")
-    else:
-        # Initialize the models
-        dt_model2 = DecisionTreeClassifier()
-        # rf_model2 = RandomForestClassifier()
-        # ab_model2 = AdaBoostClassifier()
-        # gb_model2 = GradientBoostingClassifier()
-
-        # Fit the models
-        dt_model2.fit(X_train, y_train)
-        # rf_model2.fit(X_train, y_train)
-        # ab_model2.fit(X_train, y_train)
-        # gb_model2.fit(X_train, y_train)
-
-        # predicting with the model
-        ypred_dt2=dt_model2.predict(X_test)
-        # ypred_rf2=rf_model2.predict(X_test)
-        # ypred_ab2=ab_model2.predict(X_test)
-        # ypred_gb2=gb_model2.predict(X_test)
-
-        joblib.dump(dt_model2, "archive/model_dt.pkl")
+    # Fit the models
+    dt_model2.fit(X_train, y_train)
+    rf_model2.fit(X_train, y_train)
+    ab_model2.fit(X_train, y_train)
+    gb_model2.fit(X_train, y_train)
+    # predicting with the model
+    ypred_dt2=dt_model2.predict(X_test)
+    ypred_rf2=rf_model2.predict(X_test)
+    ypred_ab2=ab_model2.predict(X_test)
+    ypred_gb2=gb_model2.predict(X_test)
 
     
 
