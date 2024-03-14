@@ -63,7 +63,7 @@ if page == pages[1]:
     st.write("Initial Data Frame")
     st.dataframe(df.head(10))
     st.write("Info of Initial Data Frame")
-    st.write(df.info())
+    df.info()
 
     st.write("Enginneerd Data Frame")
     st.dataframe(df2.head(20))
