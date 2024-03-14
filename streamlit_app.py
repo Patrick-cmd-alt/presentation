@@ -85,12 +85,13 @@ if  page == pages[2]:
     
     
     st.image("archive/match-count-year-dist.png", caption='Match Count Year Distribution', use_column_width=True)
+    st.image("archive/elo-rates-dist.png", caption='Elo Rates Distribution', use_column_width=True)
     st.image("archive/top-25-elo-rates.png", caption='Top 25 Elo Rates', use_column_width=True)
     st.image("archive/bottom-25-elo-rates.png", caption='Bottom 25 Elo Rates', use_column_width=True)
     st.image("archive/atp-point-dist.png", caption='ATP Point Distribution', use_column_width=True)
     
     st.image("archive/elo-rate-field-type-dist.png", caption='Elo Rate Field Type Distribution', use_column_width=True)
-    st.image("archive/elo-rates-dist.png", caption='Elo Rates Distribution', use_column_width=True)
+   
     st.image("archive/match-count-field-type-dist.png", caption='Match Count Field Type Distribution', use_column_width=True)
    
     
@@ -165,18 +166,17 @@ if  page == pages[4]:
     st.write("AdaBoost Classifier Accuracy:", accuracy_ab)
     st.write("Gradient Boosting Classifier Accuracy:", accuracy_gb)
     #   Inserting an image from a file path
-    st.image("archive/betting.png", caption='Match count', use_column_width=True)
-   
+    st.image("archive/accuracy-score-models.png", caption='accuracy score models', use_column_width=True) 
+    st.image("archive/confusion-matrix.png", caption='Confusion Matrix', use_column_width=True)
 
     # Displaying each image individually
-    st.image("archive/accuracy-score-models.png", caption='Match count', use_column_width=True)
+    
     
     st.image("archive/betting.png", caption='Betting', use_column_width=True)
 
     
-    st.image("archive/confusion-matrix.png", caption='Confusion Matrix', use_column_width=True)
-    st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
     
+     
 
 
 
@@ -213,5 +213,6 @@ if  page == pages[5]:
 
 if  page == pages[6]:
      st.write("This Page is just for testing!")
-
+     st.image("archive/confusion-matrix-nn.png", caption='Confusion Matrix - NN', use_column_width=True)
      st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
+    
