@@ -26,7 +26,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "DataVizualization", "Modelling1","Modelling2","Summary and Outlook", "Test Page"]
+pages=["Introduction", "Exploration", "DataVizualization", "Modelling1","Modelling2","Summary and Outlook", "Test Page", "Demo", "Betting Strategies"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -59,6 +59,7 @@ if page == pages[1]:
     st.write("### Presentation of Data")
 
     # Display the first 10 lines of the dataframe
+    # df.info()
     st.write("Initial Data Frame")
     st.dataframe(df.head(10))
     st.write("Info of Initial Data Frame")
@@ -233,3 +234,8 @@ if  page == pages[6]:
     st.dataframe(top20_rf.head(20))
     st.write("Info of Top 20 features for Random Forest")
     st.write(top20_rf.info())
+
+if  page == pages[7]:
+    st.write("###Modelling by Vahid")
+if  page == pages[8]:
+    st.write("###Modelling by Vahid")
