@@ -221,3 +221,15 @@ if  page == pages[6]:
      st.image("archive/dataframes-patrick.png", caption='Dataframes - Patrick', use_column_width=True)
      st.image("archive/most-important-nn.png", caption='Most Important NN', use_column_width=True)
      st.image("archive/nn-model.png", caption='NN Model', use_column_width=True)
+
+     
+    print("Type of top20_rf:", type(top20_rf))  # Check the type of top20_rf
+    print("Shape of top20_rf:", top20_rf.shape)  # Check the shape of top20_rf
+    print("Head of top20_rf:")  # Print the head of top20_rf
+    print(top20_rf.head())
+
+    # Display the DataFrame and its info
+    st.write("Top 20 features for Random Forest")
+    st.dataframe(top20_rf.head(20))
+    st.write("Info of Top 20 features for Random Forest")
+    st.write(top20_rf.info())
