@@ -164,7 +164,7 @@ if  page == pages[5]:
         elif classifier == "GradientBoosting":
             clf = GradientBoostingClassifier()
         clf.fit(X_train, y_train)
-        return clf
+        return clf 
 
   
     
