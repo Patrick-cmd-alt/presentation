@@ -445,7 +445,7 @@ if  page == pages[10]:
     import streamlit as st
 
 
-# Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
+    # Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
 
     # Ask the user to input odds for Player A and Player B for Pinnacle
     pinnacle_odds_PlayerA = st.number_input("Enter odds for Player A in Pinnacle:", min_value=0.0)
