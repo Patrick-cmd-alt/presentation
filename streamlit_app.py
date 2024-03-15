@@ -504,10 +504,17 @@ if  page == pages[10]:
     else:
         st.write (player_B_name, "will be the winner")
   
-    predicted_proba = ypred_user[0]  
+    # Assuming ypred_user contains the predicted probabilities for each class
 
-    # Print out the probability
-    st.write("Probability that", player_A_name, "wins:", predicted_proba)
+    # Get the predicted probabilities for each class
+    predicted_probabilities = clf_user.predict_proba(X_test_user)
+
+    # Get the probability of Player A winning (class 1)
+    probability_player_A_wins = predicted_probabilities[0, 1]  # Assuming class 1 represents Player A winning
+
+    # Display the probability
+    st.write("Probability of Player A winning:", probability_player_A_wins)
+
 
 
 
