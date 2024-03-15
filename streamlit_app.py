@@ -64,26 +64,31 @@ if page == pages[1]:
     st.dataframe(df) 
 
     st.write(df.shape)
-    st.dataframe(df.describe())
+    if st.checkbox("Show description"):
+        st.dataframe(df.describe())
     # df2 data frame
 
     st.write("Enginneerd Data Frame")
     st.dataframe(df2)
     st.write(df2.shape)
-    st.dataframe(df2.describe())
+    if st.checkbox("Show description"):
+        st.dataframe(df2.describe())
 
     # top 20 data frame 
+    top20_rf_mod = top20_rf.drop(["PlayerA_wins", "proba_elo_PlayerB_Wins"], axis=1)
     st.write("Top 20 features for Random Forest")
-    st.dataframe(top20_rf)
-    st.write(top20_rf.shape)
-    st.dataframe(top20_rf.describe())
+    st.dataframe(top20_rf_mod)
+    top20_rf_mod = top20_rf.drop(["PlayerA_wins", "proba_elo_PlayerB_Wins"], axis=1)
+    st.write(top20_rf_mod.shape)
+    if st.checkbox("Show description"):
+        st.dataframe(top20_rf_mod.describe())
 # write is like print in python and st.dataframe displays the dataframe 
    
 # greates a checkbox to show non null characters
-    if st.checkbox("Show NA") :
-        st.dataframe(df.isna().sum())
+   
+        
 
-# heading for the second page of the webapplication
+    # heading for the second page of the webapplication
 if  page == pages[2]: 
     st.write("### DataVizualization")
 #   Inserting an image from a file path
