@@ -494,7 +494,8 @@ if  page == pages[10]:
 
 
     # Print the merged dataframe
-    st.dataframe(X_test_user)
+    X_test_user_mod = X_test_user[["PS_PlayerA","PS_PlayerB","B365_PlayerA", "B365_PlayerB"]]
+    st.dataframe(X_test_user_mod)
     #testing predinction
     clf_user = load('archive/random_forest_model.joblib')
     ypred_user = clf_user.predict(X_test_user)
