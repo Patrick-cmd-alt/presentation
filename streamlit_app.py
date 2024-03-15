@@ -415,7 +415,15 @@ if  page == pages[10]:
 
     # Reorder the columns of X_test_user dataframe
     X_test_user = X_test_user.reindex(columns=desired_column_order)
+    # Get the Elo ratings of player A and player B from the dataframe
+    elo_PlayerA = X_test_user.at[0, 'elo_PlayerA']
+    elo_PlayerB = X_test_user.at[0, 'elo_PlayerB']
 
+    # Calculate the proba_elo_PlayerA_Wins using the given formula
+    proba_elo_PlayerA_Wins = 1 / (1 + 10**((elo_PlayerB - elo_PlayerA) / 400))
+
+    # Update the value of proba_elo_PlayerA_Wins in the dataframe
+    X_test_user.at[0, 'proba_elo_PlayerA_Wins'] = proba_elo_PlayerA_Wins
 
 
     # Drop the column "proba_elo_PlayerB_Wins" from X_test_user
