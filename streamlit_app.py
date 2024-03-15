@@ -431,7 +431,12 @@ if  page == pages[10]:
     #testing predinction
     clf_user = load('archive/random_forest_model.joblib')
     ypred_user = clf_user.predict(X_test_user)
-    st.write(ypred_user)
+    
+    if ypred_user == True:
+        st.write(player_A_name, "will be the winner")
+    else:
+        st.write (player_B_name, "will be the winner")
+  
 
 
 
