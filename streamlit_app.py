@@ -293,17 +293,8 @@ if  page == pages[9]:
 
 if  page == pages[10]:
    
-
-
-
-    # Assuming df2, df_names, and other necessary dataframes are defined
-
-    st.title('Tennis Match Winner Predictor')
-
-    # Select player A and B by user
-
-
-    # Assuming df2, df_names, and other necessary dataframes are defined
+    
+# Assuming df2, df_names, and other necessary dataframes are defined
 
     st.title('Tennis Match Winner Predictor')
 
@@ -345,25 +336,25 @@ if  page == pages[10]:
         # Check if the ID matches player_A_id
         if row["PlayerA_ID"] == player_A_id:
             player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
-            break
         # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_A_id:
             # Swap Player A and Player B stats
             for col in player_A_columns:
                 row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
             player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
-            break
 
         # Check if the ID matches player_B_id
         if row["PlayerA_ID"] == player_B_id:
             player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
-            break
         # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_B_id:
             # Swap Player A and Player B stats
             for col in player_B_columns:
                 row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
             player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
+
+        # Break the loop if both player A and player B data are found
+        if not player_A_stats.empty and not player_B_stats.empty:
             break
 
     # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
@@ -372,15 +363,4 @@ if  page == pages[10]:
 
 
 
-   
-
-    
-
-    
-    # predicts who is gonna win
-    #if st.button('Predict Winner'):
-        #if player_A == player_B:
-            #st.write("Please select two different players")
-        #else:
-            #winner = predict_winner(player_A, player_B)
-    #t.write(f"The predicted winner is: {winner}")
+        
