@@ -75,7 +75,7 @@ if page == pages[1]:
         st.dataframe(df2.describe())
 
     # top 20 data frame 
-    top20_rf_mod = top20_rf.drop(["PlayerA_wins", "proba_elo_PlayerB_Wins"], axis=1)
+    top20_rf_mod = top20_rf.drop(["PlayerA_Wins", "proba_elo_PlayerB_Wins"], axis=1)
     st.write("Top 20 features for Random Forest")
     st.dataframe(top20_rf_mod)
       
