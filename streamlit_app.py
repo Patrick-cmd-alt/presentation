@@ -64,14 +64,14 @@ if page == pages[1]:
     st.dataframe(df) 
 
     st.write(df.shape)
-    if st.checkbox("Show description"):
+    if st.checkbox("Show description Initial Data Frame"):
         st.dataframe(df.describe())
     # df2 data frame
 
     st.write("Enginneerd Data Frame")
     st.dataframe(df2)
     st.write(df2.shape)
-    if st.checkbox("Show description"):
+    if st.checkbox("Show description Enginneerd Data Frame"):
         st.dataframe(df2.describe())
 
     # top 20 data frame 
@@ -80,7 +80,7 @@ if page == pages[1]:
     st.dataframe(top20_rf_mod)
     top20_rf_mod = top20_rf.drop(["PlayerA_wins", "proba_elo_PlayerB_Wins"], axis=1)
     st.write(top20_rf_mod.shape)
-    if st.checkbox("Show description"):
+    if st.checkbox("Show description Top 20 Random Forest"):
         st.dataframe(top20_rf_mod.describe())
 # write is like print in python and st.dataframe displays the dataframe 
    
