@@ -387,8 +387,16 @@ if  page == pages[10]:
 
     # Print the merged dataframe
     st.dataframe(X_test_user)
-    X_test_user.drop["proba_elo_PlayerB_Wins"]
+    # Drop the column "proba_elo_PlayerB_Wins" from X_test_user
+    X_test_user.drop(columns=["proba_elo_PlayerB_Wins"], inplace=True)
+    # Add a new column named "Tournament_ID" with initial value 0 to the X_test_user dataframe
+    X_test_user["Tournament_ID"] = 0
 
+# Display an input box for the user to enter a number for Tournament_ID
+    user_input_tournament_id = st.number_input("Enter Tournament ID", value=0.0, step=1.0)
+
+# Update the "Tournament_ID" column in the X_test_user dataframe with the user input
+    X_test_user["Tournament_ID"] = user_input_tournament_id
     #testing predinction
     clf_user = load('archive/random_forest_model.joblib')
     ypred_user = clf_user.predict(X_test_user)
