@@ -387,7 +387,7 @@ if  page == pages[10]:
 
     # Print the merged dataframe
     st.dataframe(X_test_user)
-
+    X_test_user.drop["proba_elo_PlayerB_Wins"]
 
     #testing predinction
     clf_user = load('archive/random_forest_model.joblib')
