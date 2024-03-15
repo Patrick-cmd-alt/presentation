@@ -66,7 +66,7 @@ if page == pages[1]:
     st.dataframe(df.head(10))
     st.write("Info of Initial Data Frame")
     # info of 
-    st.dataframe(df.info())
+    st.dataframe(print(df.info()))
     st.write(df.shape)
     st.dataframe(df.describe())
     # df2 data frame
