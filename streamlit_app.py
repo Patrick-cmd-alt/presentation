@@ -295,10 +295,6 @@ if  page == pages[10]:
    
     
 
-
-
-    # Assuming df2, df_names, and other necessary dataframes are defined
-
     st.title('Tennis Match Winner Predictor')
 
     # Select player A and B by user
@@ -349,7 +345,10 @@ if  page == pages[10]:
         elif row["PlayerB_ID"] == player_A_id:
             # Swap Player A and Player B stats
             for col in player_A_columns:
-                row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
+                if "Wins_Player_A" in col:
+                    row[col], row[col.replace("Wins_Player_A", "Wins_Player_B")] = row[col.replace("Wins_Player_A", "Wins_Player_B")], row[col]
+                else:
+                    row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
             player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
             player_A_found = True
 
@@ -364,7 +363,10 @@ if  page == pages[10]:
         if row["PlayerA_ID"] == player_B_id:
             # Swap Player A and Player B stats
             for col in player_B_columns:
-                row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
+                if "Wins_Player_B" in col:
+                    row[col], row[col.replace("Wins_Player_B", "Wins_Player_A")] = row[col.replace("Wins_Player_B", "Wins_Player_A")], row[col]
+                else:
+                    row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
             player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
             player_B_found = True
         # Check if the ID matches player_B_id
@@ -375,6 +377,7 @@ if  page == pages[10]:
     # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
     st.dataframe(player_A_stats)
     st.dataframe(player_B_stats)
+
 
 
 
