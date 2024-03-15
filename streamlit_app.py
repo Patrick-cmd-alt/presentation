@@ -383,7 +383,7 @@ if  page == pages[10]:
    # Merge player_B_stats into player_A_stats dataframe
    
 
-    X_test_user = df1.merge(df2, left_index=True, right_index=True)
+    X_test_user = player_A_stats.merge(player_B_stats, left_index=True, right_index=True)
 
     # Print the merged dataframe
     st.dataframe(X_test_user)
