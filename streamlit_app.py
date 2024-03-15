@@ -513,8 +513,8 @@ if  page == pages[10]:
     probability_player_A_wins = predicted_probabilities[0, 1]  # Assuming class 1 represents Player A winning
 
     # Display the probability
-    st.write("Probability of Player A winning:", probability_player_A_wins)
-    st.write("Probability of Player B winning:", 1 - probability_player_A_wins)
+    st.write("Probability of",player_A_name,"winning:", probability_player_A_wins)
+    st.write("Probability of",player_B_name,"winning:", 1 - probability_player_A_wins)
 
 
 
