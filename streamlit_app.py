@@ -64,14 +64,17 @@ if page == pages[1]:
     st.dataframe(df) 
 
     st.write(df.shape)
-    if st.checkbox("Show description Initial Data Frame"):
+    if st.checkbox("Show Description of Initial Data Frame"):
         st.dataframe(df.describe())
+    if st.checkbox("Show Columns Initial Dataframe"):
+        st.image("archive/initial-dataframe.png", caption="Initial Dataframe", use_column_width=True)
+    
     # df2 data frame
 
     st.write("Enginneerd Data Frame")
     st.dataframe(df2)
     st.write(df2.shape)
-    if st.checkbox("Show description Enginneerd Data Frame"):
+    if st.checkbox("Show Description of Enginneerd Data Frame"):
         st.dataframe(df2.describe())
 
     # top 20 data frame 
@@ -81,17 +84,18 @@ if page == pages[1]:
       
      
     st.write(top20_rf_mod.shape)
-    if st.checkbox("Show description Top 20 Random Forest"):
+    if st.checkbox("Show Description of Top 20 Random Forest"):
         st.dataframe(top20_rf_mod.describe())
 # write is like print in python and st.dataframe displays the dataframe 
-   
-# greates a checkbox to show non null characters
+    if st.checkbox("Show Columns TOP 20 Random Forest"):
+        st.image("archive/top20rf.png", caption='Top 20 Random Forest', use_column_width=True)
+
    
         
 
     # heading for the second page of the webapplication
 if  page == pages[2]: 
-    st.write("### DataVizualization")
+    st.write("### Data Vizualization")
 #   Inserting an image from a file path
  
     
@@ -275,6 +279,7 @@ if  page == pages[9]:
     st.dataframe(df2.info())
     st.write(df2.shape)
     st.dataframe(df2.describe())
+    columnsdf2 = st.selectbox("Columns Engineered Data Frame", df2.columns)
 
     # top 20 data frame 
     st.write("Top 20 features for Random Forest")
@@ -467,7 +472,7 @@ if  page == pages[10]:
 
     # Update the "Tournament_ID" column in the X_test_user dataframe with the selected tournament ID
     X_test_user["Tournament_ID"] = tournament_name_id
-    import streamlit as st
+    
 
 
     # Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
