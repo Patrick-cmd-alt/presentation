@@ -136,11 +136,9 @@ if  page == pages[4]:
 
 
 if  page == pages[5]:
+    st.write("###Modelling by Patrick")
     st.write("#Data")
     # modeling patrick
- 
-
-    
     X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
     y = top20_rf['PlayerA_Wins']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=573)
@@ -172,7 +170,7 @@ if  page == pages[5]:
     elif display == 'Confusion matrix':
         st.dataframe(scores(clf, display))
 
-    st.write("###Modelling by Patrick")
+    
     st.image("archive/most-important-ada.png", caption='Most Important ADA', use_column_width=True)
     st.image("archive/most-important-dt.png", caption='Most Important DT', use_column_width=True)
     st.image("archive/most-important-gb.png", caption='Most Important GB', use_column_width=True)
