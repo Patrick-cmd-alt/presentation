@@ -19,7 +19,7 @@ from joblib import load
 
 
 
-
+df_tournament_ID = pd.read_csv("archive/df_tournament.csv")
 df_names = pd.read_csv("archive/player_names_ids.csv")
 df = pd.read_csv("archive/Patrick_first.csv")
 df2 = pd.read_csv("archive/Patrick_second.csv")
