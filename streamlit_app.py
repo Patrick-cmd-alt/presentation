@@ -442,6 +442,25 @@ if  page == pages[10]:
 
     # Update the "Tournament_ID" column in the X_test_user dataframe with the selected tournament ID
     X_test_user["Tournament_ID"] = tournament_name_id
+    import streamlit as st
+
+
+# Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
+
+    # Ask the user to input odds for Player A and Player B for Pinnacle
+    pinnacle_odds_PlayerA = st.number_input("Enter odds for Player A in Pinnacle:", min_value=0.0)
+    pinnacle_odds_PlayerB = st.number_input("Enter odds for Player B in Pinnacle:", min_value=0.0)
+
+    # Ask the user to input odds for Player A and Player B for Bet365
+    bet365_odds_PlayerA = st.number_input("Enter odds for Player A in Bet365:", min_value=0.0)
+    bet365_odds_PlayerB = st.number_input("Enter odds for Player B in Bet365:", min_value=0.0)
+
+    # Update the corresponding columns in the X_test_user dataframe with the user inputs
+    X_test_user.loc[0, 'PS_PlayerA'] = pinnacle_odds_PlayerA
+    X_test_user.loc[0, 'PS_PlayerB'] = pinnacle_odds_PlayerB
+    X_test_user.loc[0, 'B365_PlayerA'] = bet365_odds_PlayerA
+    X_test_user.loc[0, 'B365_PlayerB'] = bet365_odds_PlayerB
+
 
     # Print the merged dataframe
     st.dataframe(X_test_user)
