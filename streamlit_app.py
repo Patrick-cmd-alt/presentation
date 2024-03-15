@@ -385,8 +385,7 @@ if  page == pages[10]:
 
     X_test_user = player_A_stats.merge(player_B_stats, left_index=True, right_index=True)
 
-    # Print the merged dataframe
-    st.dataframe(X_test_user)
+    
     # Define the desired column order
     desired_column_order = [
     'B365_PlayerB',
@@ -444,6 +443,8 @@ if  page == pages[10]:
     # Update the "Tournament_ID" column in the X_test_user dataframe with the selected tournament ID
     X_test_user["Tournament_ID"] = tournament_name_id
 
+    # Print the merged dataframe
+    st.dataframe(X_test_user)
     #testing predinction
     clf_user = load('archive/random_forest_model.joblib')
     ypred_user = clf_user.predict(X_test_user)
