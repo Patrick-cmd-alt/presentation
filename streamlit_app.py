@@ -409,7 +409,7 @@ if  page == pages[10]:
     'Wins_Player_A',
     'Wins_Player_B',
     'Tournament_ID',
-    'PlayerA_Wins',
+
     'proba_elo_PlayerB_Wins'
                             ]
 
