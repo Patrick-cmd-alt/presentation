@@ -514,6 +514,7 @@ if  page == pages[10]:
 
     # Display the probability
     st.write("Probability of Player A winning:", probability_player_A_wins)
+    st.write("Probability of Player B winning:", 1 - probability_player_A_wins)
 
 
 
