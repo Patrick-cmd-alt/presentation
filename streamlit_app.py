@@ -72,7 +72,7 @@ if page == pages[1]:
     # df2 data frame
 
     st.write("Enginneerd Data Frame")
-    st.dataframe(df2.head(20))
+    st.dataframe(df2)
     st.write("Info of Engineered Data Frame")
     
     # info 0f
