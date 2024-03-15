@@ -382,7 +382,7 @@ if  page == pages[10]:
     # Merge player_A_stats and player_B_stats into a single dataframe X_test_user
     X_test_user = pd.concat([player_A_stats, player_B_stats], ignore_index=True)
 
-# Print the merged dataframe
+    # Print the merged dataframe
     st.dataframe(X_test_user)
 
 
