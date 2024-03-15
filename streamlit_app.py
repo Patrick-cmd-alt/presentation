@@ -389,7 +389,10 @@ if  page == pages[10]:
     st.dataframe(X_test_user)
 
 
-
+    #testing predinction
+    clf_user = load('archive/random_forest_model.joblib')
+    ypred_user = clf_user.predict(X_test_user)
+    st.write(ypred_user)
 
 
 
