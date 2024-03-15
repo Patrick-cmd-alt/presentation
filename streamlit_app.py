@@ -333,16 +333,16 @@ if  page == pages[10]:
     for index, row in df2[::-1].iterrows():
     # Check if the ID matches player_A_id
         if row["PlayerA_ID"] == player_A_id:
-        player_A_stats = player_A_stats.append(row[player_A_columns])
+            player_A_stats = player_A_stats.append(row[player_A_columns])
     # Check if the ID matches player_B_id
         elif row["PlayerA_ID"] == player_B_id:
-        player_A_stats = player_A_stats.append(row[player_B_columns])
+            player_A_stats = player_A_stats.append(row[player_B_columns])
     # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_A_id:
-        player_B_stats = player_B_stats.append(row[player_A_columns])
+            player_B_stats = player_B_stats.append(row[player_A_columns])
     # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_B_id:
-        player_B_stats = player_B_stats.append(row[player_B_columns])
+            player_B_stats = player_B_stats.append(row[player_B_columns])
 
 # Reset index of player_A_stats and player_B_stats
     player_A_stats.reset_index(drop=True, inplace=True)
