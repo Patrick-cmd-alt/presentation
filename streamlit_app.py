@@ -292,33 +292,16 @@ if  page == pages[9]:
     st.dataframe(top20_rf.describe())
 
 if  page == pages[10]:
-    X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
-    y = top20_rf['PlayerA_Wins']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=573)
-    def prediction(classifier):
-        if classifier == 'Random Forest':
-            clf = load('archive/random_forest_model.joblib')
-        elif classifier == 'AdaBoost':
-            clf = load('archive/adaboost_model.joblib')
-        elif classifier == 'DecisionTree':
-            clf = load("archive/decision_tree_model.joblib")
-        elif classifier == "GradientBoosting":
-            clf = load('archive/gradient_boosting_model.joblib')
-        return clf
+    #players = ['Player 1', 'Player 2', 'Player 3', 'Player 4']  # replace with your list of players
 
-    def scores(clf, choice):
-        if choice == 'Accuracy':
-            return clf.score(X_test, y_test)
-        elif choice == 'Confusion matrix':
-            return confusion_matrix(y_test, clf.predict(X_test))
+    st.title('Tennis Match Winner Predictor')
 
-    choice = ['Random Forest', 'AdaBoost', "DecisionTree", "GradientBoosting"]
-    option = st.selectbox('Choice of the model', choice)
-    st.write('The chosen model is :', option)
+    player_A = st.selectbox('Select Player A', df_names["Name"])
+    player_B = st.selectbox('Select Player B', df_names["Name"])
 
-    clf = prediction(option)
-    display = st.radio('What do you want to show ?', ('Accuracy', 'Confusion matrix'))
-    if display == 'Accuracy':
-        st.write(scores(clf, display))
-    elif display == 'Confusion matrix':
-        st.dataframe(scores(clf, display))
+    #if st.button('Predict Winner'):
+        #if player_A == player_B:
+            #st.write("Please select two different players")
+        #else:
+            #winner = predict_winner(player_A, player_B)
+    #t.write(f"The predicted winner is: {winner}")
