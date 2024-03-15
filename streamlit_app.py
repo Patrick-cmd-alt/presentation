@@ -67,7 +67,7 @@ if page == pages[1]:
     if st.checkbox("Show Description of Initial Data Frame"):
         st.dataframe(df.describe())
     if st.checkbox("Show Columns Initial Dataframe"):
-        st.image("archive/dfengine.png", caption="Initial Dataframe", use_column_width=True)
+        st.image("archive/enginedf.tif", caption="Initial Dataframe", use_column_width=True)
     
     # df2 data frame
 
