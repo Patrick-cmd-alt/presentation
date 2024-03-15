@@ -138,14 +138,7 @@ if  page == pages[4]:
 if  page == pages[5]:
     st.write("#Data")
     # modeling patrick
-    st.write("###Modelling by Patrick")
-    st.image("archive/most-important-ada.png", caption='Most Important ADA', use_column_width=True)
-    st.image("archive/most-important-dt.png", caption='Most Important DT', use_column_width=True)
-    st.image("archive/most-important-gb.png", caption='Most Important GB', use_column_width=True)
-   
-    st.image("archive/most-important-rf.png", caption='Most Important RF', use_column_width=True)
-    
-    st.image("archive/top-10-features.png", caption='Top 10 Features', use_column_width=True)
+ 
 
     
     X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
@@ -178,6 +171,15 @@ if  page == pages[5]:
         st.write(scores(clf, display))
     elif display == 'Confusion matrix':
         st.dataframe(scores(clf, display))
+
+    st.write("###Modelling by Patrick")
+    st.image("archive/most-important-ada.png", caption='Most Important ADA', use_column_width=True)
+    st.image("archive/most-important-dt.png", caption='Most Important DT', use_column_width=True)
+    st.image("archive/most-important-gb.png", caption='Most Important GB', use_column_width=True)
+   
+    st.image("archive/most-important-rf.png", caption='Most Important RF', use_column_width=True)
+    
+    st.image("archive/top-10-features.png", caption='Top 10 Features', use_column_width=True)
 
 
 
