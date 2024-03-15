@@ -381,9 +381,9 @@ if  page == pages[10]:
     # merging user created dataframes
   
    # Merge player_B_stats into player_A_stats dataframe
-    X_test_user = pd.concat([player_A_stats, player_B_stats, axis=1)
+   
 
-    
+    X_test_user = df1.merge(df2, left_index=True, right_index=True)
 
     # Print the merged dataframe
     st.dataframe(X_test_user)
