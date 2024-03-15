@@ -76,13 +76,12 @@ if page == pages[1]:
     st.write(df2.shape)
     if st.checkbox("Show Description of Enginneerd Data Frame"):
         st.dataframe(df2.describe())
+    columnsdf2 = st.selectbox("Columns Enginneerd Data Frame", df2.columns)
 
     # top 20 data frame 
     top20_rf_mod = top20_rf.drop(["PlayerA_Wins", "proba_elo_PlayerB_Wins"], axis=1)
     st.write("Top 20 features for Random Forest")
     st.dataframe(top20_rf_mod)
-      
-     
     st.write(top20_rf_mod.shape)
     if st.checkbox("Show Description of Top 20 Random Forest"):
         st.dataframe(top20_rf_mod.describe())
