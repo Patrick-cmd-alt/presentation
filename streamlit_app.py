@@ -28,7 +28,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Modelling1", "Modelling2",'Tennis Match Winner Predictor', "Summary and Outlook", "Test Page1", "Test Page 2", "Test Page 3"]
+pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Model_VD", "Model_PS",'Tennis Match Winner Predictor PS', "Summary and Outlook"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
