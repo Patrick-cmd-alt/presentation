@@ -88,7 +88,7 @@ if page == pages[1]:
     st.dataframe(top20_rf.info())
     st.write(top20_rf.shape)
     st.dataframe(top20_rf.describe())
-
+    st.dataframe(df_names)
 # write is like print in python and st.dataframe displays the dataframe 
    
 # greates a checkbox to show non null characters
@@ -339,7 +339,7 @@ if  page == pages[10]:
             break
         # Check if the ID matches player_A_id
         if row["PlayerA_ID"] == player_A_id:
-            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()])
+            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
             player_A_found = True
         # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_A_id:
@@ -349,7 +349,7 @@ if  page == pages[10]:
                     row[col], row[col.replace("Wins_Player_A", "Wins_Player_B")] = row[col.replace("Wins_Player_A", "Wins_Player_B")], row[col]
                 else:
                     row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
-            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()])
+            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
             player_A_found = True
 
     # Flag to keep track of whether player B data is found
@@ -367,11 +367,11 @@ if  page == pages[10]:
                     row[col], row[col.replace("Wins_Player_B", "Wins_Player_A")] = row[col.replace("Wins_Player_B", "Wins_Player_A")], row[col]
                 else:
                     row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
-            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()])
+            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
             player_B_found = True
         # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_B_id:
-            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()])
+            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
             player_B_found = True
 
     # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
