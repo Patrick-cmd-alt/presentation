@@ -294,6 +294,8 @@ if  page == pages[9]:
 if  page == pages[10]:
    
     
+
+
 # Assuming df2, df_names, and other necessary dataframes are defined
 
     st.title('Tennis Match Winner Predictor')
@@ -331,8 +333,10 @@ if  page == pages[10]:
     player_A_stats = pd.DataFrame(columns=player_A_columns)
     player_B_stats = pd.DataFrame(columns=player_B_columns)
 
-    # Iterate through df2 from bottom to top
+    # Iterate through df2 from bottom to top for Player A
     for index, row in df2[::-1].iterrows():
+        if len(player_A_stats) == 1:
+            break
         # Check if the ID matches player_A_id
         if row["PlayerA_ID"] == player_A_id:
             player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
@@ -342,19 +346,22 @@ if  page == pages[10]:
             for col in player_A_columns:
                 row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
             player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
+            break
 
+    # Iterate through df2 from bottom to top for Player B
+    for index, row in df2[::-1].iterrows():
+        if len(player_B_stats) == 1:
+            break
         # Check if the ID matches player_B_id
         if row["PlayerA_ID"] == player_B_id:
-            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
-        # Check if the ID matches player_B_id
-        elif row["PlayerB_ID"] == player_B_id:
             # Swap Player A and Player B stats
             for col in player_B_columns:
                 row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
             player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
-
-        # Break the loop if both player A and player B data are found
-        if not player_A_stats.empty and not player_B_stats.empty:
+            break
+        # Check if the ID matches player_B_id
+        elif row["PlayerB_ID"] == player_B_id:
+            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
             break
 
     # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
@@ -363,4 +370,5 @@ if  page == pages[10]:
 
 
 
-        
+
+            
