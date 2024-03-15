@@ -301,10 +301,17 @@ if  page == pages[10]:
     st.title('Tennis Match Winner Predictor')
 
     # Select player A and B by user
-    player_A = st.selectbox('Select Player A', df_names["Name"])
-    player_B = st.selectbox('Select Player B', df_names["Name"])
-    player_A_id = df_names.loc[df_names['Name'] == player_A, 'ID'].iloc[0]
-    player_B_id = df_names.loc[df_names['Name'] == player_B, 'ID'].iloc[0]
+
+
+    # Assuming df2, df_names, and other necessary dataframes are defined
+
+    st.title('Tennis Match Winner Predictor')
+
+    # Select player A and B by user
+    player_A_name = st.selectbox('Select Player A', df_names["Name"])
+    player_B_name = st.selectbox('Select Player B', df_names["Name"])
+    player_A_id = df_names.loc[df_names['Name'] == player_A_name, 'ID'].iloc[0]
+    player_B_id = df_names.loc[df_names['Name'] == player_B_name, 'ID'].iloc[0]
 
     # Lists of columns for Player A and Player B stats
     player_A_columns = ["PS_PlayerA",
@@ -337,24 +344,32 @@ if  page == pages[10]:
     for index, row in df2[::-1].iterrows():
         # Check if the ID matches player_A_id
         if row["PlayerA_ID"] == player_A_id:
-            player_A_stats = pd.concat([player_A_stats, row[player_A_columns].to_frame().T])
-        # Check if the ID matches player_B_id
-        elif row["PlayerA_ID"] == player_B_id:
-            player_A_stats = pd.concat([player_A_stats, row[player_B_columns].to_frame().T])
+            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
+            break
         # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_A_id:
-            player_B_stats = pd.concat([player_B_stats, row[player_A_columns].to_frame().T])
+            # Swap Player A and Player B stats
+            for col in player_A_columns:
+                row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
+            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
+            break
+
+        # Check if the ID matches player_B_id
+        if row["PlayerA_ID"] == player_B_id:
+            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
+            break
         # Check if the ID matches player_B_id
         elif row["PlayerB_ID"] == player_B_id:
-            player_B_stats = pd.concat([player_B_stats, row[player_B_columns].to_frame().T])
+            # Swap Player A and Player B stats
+            for col in player_B_columns:
+                row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
+            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
+            break
 
-    # Reset index of player_A_stats and player_B_stats
-    player_A_stats.reset_index(drop=True, inplace=True)
-    player_B_stats.reset_index(drop=True, inplace=True)
-
-    # Display the dataframes
+    # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
     st.dataframe(player_A_stats)
     st.dataframe(player_B_stats)
+
 
 
    
