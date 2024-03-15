@@ -432,10 +432,11 @@ if  page == pages[10]:
     X_test_user["Tournament_ID"] = 0
 
 # Display an input box for the user to enter a number for Tournament_ID
-    user_input_tournament_id = st.number_input("Enter Tournament ID", value=0.0, step=1.0)
-
+   
+    tournament_name = st.selectbox('Select Tournament', df_tournament_ID["Tournament"])
+    tournament_name_id = tournament_name.loc[df_tournament_ID['Name'] == tournament_name, 'Tournament_ID'].iloc[0]
 # Update the "Tournament_ID" column in the X_test_user dataframe with the user input
-    X_test_user["Tournament_ID"] = user_input_tournament_id
+    X_test_user["Tournament_ID"] = tournament_name_id
     #testing predinction
     clf_user = load('archive/random_forest_model.joblib')
     ypred_user = clf_user.predict(X_test_user)
