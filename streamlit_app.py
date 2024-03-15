@@ -375,9 +375,40 @@ if  page == pages[10]:
             player_B_found = True
 
     # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
-    st.dataframe(player_A_stats)
-    st.dataframe(player_B_stats)
+    #st.dataframe(player_A_stats)
+    #st.dataframe(player_B_stats)
 
+    # only display certain values, which will be fixed for calculation the other values will be added by the usher        
+    # These data frames are used for visualization for the user
+    
+    # Columns related to Player A
+    columns_PlayerA = [
+    'elo_PlayerA',
+    'PlayerA_Pts',
+    'Wins_Player_A',
+    'Wins_Per_Match_ratio_PlayerA',
+    'Wins_Per_Match_Ratio_PlayerA_Hard',
+    'Wins_Per_Match_Ratio_PlayerA_Grass',
+    'Wins_Per_Match_Ratio_PlayerA_Clay'
+        ]
+
+    # Columns related to Player B
+    columns_PlayerB = [
+    'elo_PlayerB',
+    'PlayerB_Pts',
+    'Wins_Player_B',
+    'Wins_Per_Match_ratio_PlayerB',
+    'Wins_Per_Match_Ratio_PlayerB_Hard',
+    'Wins_Per_Match_Ratio_PlayerB_Grass',
+    'Wins_Per_Match_Ratio_PlayerB_Clay'
+       ]
+
+    # Select columns for player A and player B
+    player_A_stats_mod = player_A_stats[columns_PlayerA]
+    player_B_stats_mod = player_B_stats[columns_PlayerB]
+
+    st.dataframe(player_A_stats_mod)
+    st.dataframe(player_B_stats_mod)
     # merging user created dataframes
   
    # Merge player_B_stats into player_A_stats dataframe
