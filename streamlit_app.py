@@ -387,6 +387,37 @@ if  page == pages[10]:
 
     # Print the merged dataframe
     st.dataframe(X_test_user)
+    # Define the desired column order
+    desired_column_order = [
+    'B365_PlayerB',
+    'PS_PlayerA',
+    'PS_PlayerB',
+    'Wins_Per_Match_ratio_PlayerB',
+    'Wins_Per_Match_ratio_PlayerA',
+    'B365_PlayerA',
+    'proba_elo_PlayerA_Wins',
+    'Wins_Per_Match_Ratio_PlayerB_Hard',
+    'Wins_Per_Match_Ratio_PlayerA_Hard',
+    'PlayerA_Pts',
+    'elo_PlayerB',
+    'PlayerB_Pts',
+    'Wins_Per_Match_Ratio_PlayerB_Clay',
+    'Wins_Per_Match_Ratio_PlayerB_Grass',
+    'Wins_Per_Match_Ratio_PlayerA_Grass',
+    'Wins_Per_Match_Ratio_PlayerA_Clay',
+    'elo_PlayerA',
+    'Wins_Player_A',
+    'Wins_Player_B',
+    'Tournament_ID',
+    'PlayerA_Wins',
+    'proba_elo_PlayerB_Wins'
+                            ]
+
+    # Reorder the columns of X_test_user dataframe
+    X_test_user = X_test_user.reindex(columns=desired_column_order)
+
+
+
     # Drop the column "proba_elo_PlayerB_Wins" from X_test_user
     X_test_user.drop(columns=["proba_elo_PlayerB_Wins"], inplace=True)
     # Add a new column named "Tournament_ID" with initial value 0 to the X_test_user dataframe
