@@ -504,7 +504,7 @@ if  page == pages[10]:
     else:
         st.write (player_B_name, "will be the winner")
   
-    predicted_proba = ypred_proba_user[0, 1]  # Assuming X_test_user has only one row
+    predicted_proba = ypred_user[0, 1]  
 
     # Print out the probability
     st.write("Probability that", player_A_name, "wins:", predicted_proba)
