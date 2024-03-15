@@ -292,13 +292,68 @@ if  page == pages[9]:
     st.dataframe(top20_rf.describe())
 
 if  page == pages[10]:
-    #players = ['Player 1', 'Player 2', 'Player 3', 'Player 4']  # replace with your list of players
+    
 
     st.title('Tennis Match Winner Predictor')
-
+    # Select player A and B by user
     player_A = st.selectbox('Select Player A', df_names["Name"])
     player_B = st.selectbox('Select Player B', df_names["Name"])
+    player_A_id = df_names.loc[df_names['Name'] == player_A_name, 'ID'].iloc[0]
+    player_B_id = df_names.loc[df_names['Name'] == player_B_name, 'ID'].iloc[0]
 
+    # searches for stats in the dataframe
+    # Lists of columns for Player A and Player B stats
+    player_A_columns = ["PS_PlayerA",
+                    "Wins_Per_Match_ratio_PlayerA",
+                    "B365_PlayerA",
+                    "proba_elo_PlayerA_Wins",
+                    "Wins_Per_Match_Ratio_PlayerA_Hard",
+                    "PlayerA_Pts",
+                    "Wins_Per_Match_Ratio_PlayerA_Grass",
+                    "Wins_Per_Match_Ratio_PlayerA_Clay",
+                    "elo_PlayerA",
+                    "Wins_Player_A"]
+
+    player_B_columns = ["PS_PlayerB",
+                    "Wins_Per_Match_ratio_PlayerB",
+                    "B365_PlayerB",
+                    "proba_elo_PlayerB_Wins",
+                    "Wins_Per_Match_Ratio_PlayerB_Hard",
+                    "PlayerB_Pts",
+                    "Wins_Per_Match_Ratio_PlayerB_Grass",
+                    "Wins_Per_Match_Ratio_PlayerB_Clay",
+                    "elo_PlayerB",
+                    "Wins_Player_B"]
+
+    # Initialize empty DataFrames to store player A and player B stats
+    player_A_stats = pd.DataFrame(columns=player_A_columns)
+    player_B_stats = pd.DataFrame(columns=player_B_columns)
+
+# Iterate through df2 from bottom to top
+    for index, row in df2[::-1].iterrows():
+    # Check if the ID matches player_A_id
+        if row["PlayerA_ID"] == player_A_id:
+        player_A_stats = player_A_stats.append(row[player_A_columns])
+    # Check if the ID matches player_B_id
+        elif row["PlayerA_ID"] == player_B_id:
+        player_A_stats = player_A_stats.append(row[player_B_columns])
+    # Check if the ID matches player_B_id
+        elif row["PlayerB_ID"] == player_A_id:
+        player_B_stats = player_B_stats.append(row[player_A_columns])
+    # Check if the ID matches player_B_id
+        elif row["PlayerB_ID"] == player_B_id:
+        player_B_stats = player_B_stats.append(row[player_B_columns])
+
+# Reset index of player_A_stats and player_B_stats
+    player_A_stats.reset_index(drop=True, inplace=True)
+    player_B_stats.reset_index(drop=True, inplace=True)
+
+# Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
+    st.dataframe(player_A_stats)
+    st.dataframe(player_B_stats)
+
+    
+    # predicts who is gonna win
     #if st.button('Predict Winner'):
         #if player_A == player_B:
             #st.write("Please select two different players")
