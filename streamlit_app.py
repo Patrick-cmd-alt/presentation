@@ -49,9 +49,7 @@ if  page == pages[0]:
     2. Yields a net plus when betting money on tennis matches on Bet 365 and Pinnacle 
        with their respective odds.
        
-    This work, carried out by Vahid Toomani with a scientific background in math and
-    physics, and Patrick Schall with a scientific background in molecular biology, will
-    not only assist gamblers in maximizing their ROI and aid bookmakers in improving
+    This work will not only assist gamblers in maximizing their ROI and aid bookmakers in improving
     their odds, but it will also help tennis players and their coaches better understand
     the main features influencing the outcome of a tennis game.
     """)
@@ -63,32 +61,22 @@ if page == pages[1]:
     # Display the first 10 lines of the dataframe
     # df data frame
     st.write("Initial Data Frame")
-    st.dataframe(df.head(10))
-    st.write("Info of Initial Data Frame")
-    # info of 
-    st.dataframe(print(df.info()))
+    st.dataframe(df) 
+
     st.write(df.shape)
     st.dataframe(df.describe())
     # df2 data frame
 
     st.write("Enginneerd Data Frame")
     st.dataframe(df2)
-    st.write("Info of Engineered Data Frame")
-    
-    # info 0f
-    st.dataframe(df2.info())
     st.write(df2.shape)
     st.dataframe(df2.describe())
 
     # top 20 data frame 
     st.write("Top 20 features for Random Forest")
-    st.dataframe(top20_rf.head(20))
-    
-    st.write("Info of Top 20 features for Random Forest")
-    st.dataframe(top20_rf.info())
+    st.dataframe(top20_rf)
     st.write(top20_rf.shape)
     st.dataframe(top20_rf.describe())
-    st.dataframe(df_names)
 # write is like print in python and st.dataframe displays the dataframe 
    
 # greates a checkbox to show non null characters
