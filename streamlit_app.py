@@ -380,10 +380,11 @@ if  page == pages[10]:
 
     # merging user created dataframes
     # Merge player_A_stats and player_B_stats into a single dataframe X_test_user
-    X_test_user = pd.concat([player_A_stats, player_B_stats], ignore_index=True)
+    X_test_user = pd.concat([player_A_stats.iloc[0], player_B_stats.iloc[0]], axis=1).transpose()
 
     # Print the merged dataframe
-    st.dataframe(X_test_user)
+    print(X_test_user)
+
 
 
 
