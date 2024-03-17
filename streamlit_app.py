@@ -150,8 +150,6 @@ if  page == pages[5]:
             clf = load("archive/decision_tree_model.joblib")
         elif classifier == "GradientBoosting":
             clf = load('archive/gradient_boosting_model.joblib')
-        elif classifier =="Neural Network":
-            clf = load('archive/model_nn.keras')
         return clf
 
     def scores(clf, choice):
@@ -160,7 +158,7 @@ if  page == pages[5]:
         elif choice == 'Confusion matrix':
             return confusion_matrix(y_test, clf.predict(X_test))
 
-    choice = ['Random Forest', 'AdaBoost', "DecisionTree", "GradientBoosting", "Neural Network"]
+    choice = ['Random Forest', 'AdaBoost', "DecisionTree", "GradientBoosting"]
     option = st.selectbox('Choice of the model', choice)
     st.write('The chosen model is :', option)
 
