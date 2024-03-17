@@ -13,6 +13,8 @@ from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from joblib import load
+import keras
+import tensorflow as tf
 
 
 # define here all data frames
@@ -148,6 +150,8 @@ if  page == pages[5]:
             clf = load("archive/decision_tree_model.joblib")
         elif classifier == "GradientBoosting":
             clf = load('archive/gradient_boosting_model.joblib')
+        elif classifier =="Neural Network":
+            clf = load('archive/model_nn.keras')
         return clf
 
     def scores(clf, choice):
