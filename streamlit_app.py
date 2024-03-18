@@ -126,7 +126,7 @@ if  page == pages[2]:
     st.image("archive/top-40-players-tournament-wins.png", caption='Top 40 Players Tournament Wins', use_column_width=True)
 
 if  page == pages[3]:
-    st.write("###M Strategies")
+    st.write("###Strategies")
     
     st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
 if  page == pages[4]:
