@@ -1,19 +1,8 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import make_classification
 from sklearn.metrics import confusion_matrix
-from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from joblib import load
-import keras
 import tensorflow as tf
 
 
@@ -30,7 +19,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Model_VD", "Model_PS",'Tennis Match Winner Predictor PS', "Summary and Outlook"]
+pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Model_VT", "Model_PS",'Tennis Match Winner Predictor PS', "Summary and Outlook"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
