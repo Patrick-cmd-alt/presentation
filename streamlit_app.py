@@ -12,6 +12,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import joblib
 import tensorflow as tf
+import core.utils
+from typing import Any
 
 
 # define here all data frames
@@ -29,6 +31,10 @@ st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
 pages=["Introduction", "Exploration", "Data Vizualization", "Strategies", "Betting Strategies", "Strategy 1", "Strategy 2",'Tennis Match Winner Predictor ', "Summary and Outlook"]
 page=st.sidebar.radio("Go to", pages)
+
+
+profits_test = pd.read_csv("archive/profits_test.csv", index_col=0)
+elo_rates = pd.read_csv("archive/elo_rates_enriched.csv", index_col=0)
 
 # first page introduction to tennis betting project.
 
@@ -129,32 +135,75 @@ if  page == pages[3]:
     
     
 if  page == pages[4]:
-       st.write("#Bet strategies")
-
-
-if  page == pages[4]:
-    st.write("#Modelling by Vahid")
-
-    def prediction(classifier):
-        if classifier == 'Random Forest':
-            clf = joblib.load('archive/model_rf.pkl')
-        elif classifier == 'AdaBoost':
-            clf = joblib.load('archive/model_adc_dtc.pkl')
-        elif classifier == 'SVM':
-            clf = joblib.load("archive/model_svm.pkl")
-        elif classifier == "Voting":
-            clf = joblib.load('archive/model_vc.pkl')
-        elif classifier == "Neural Network":
-            clf = joblib.load('archive/model_nn.keras')
-        return clf
+       st.write("# Bet strategies")
 
 
 if  page == pages[5]:
-    st.write("###Modelling by Vahid")
+    st.write("# Models with the first set of features")
+
+    def advise(p1: str, p2: str, field_type: str, model) -> dict:
+        feats = core.utils.get_feats(
+            P1_name=p1, P2_name=p2, field_type=field_type, elo_rates=elo_rates
+        )
+        df_advise = core.utils.get_advise(input=feats, model=model).fillna(value="None")
+        return {
+            # "advise": df_advise["advise"].values[0],
+            "predicted_winner": df_advise["predict_P1_wins"]
+            .replace({True: p1, False: p2})
+            .values[0],
+            "certainty": round(df_advise["certainty"].values[0] * 100, 1),
+        }
+
+    def prediction(classifier) -> tuple[Any, pd.DataFrame]:
+        if classifier == 'Random Forest':
+            clf = joblib.load('archive/model_rfc.pkl')
+            results = profits_test[["rfc_result", "rfc_certainty", "rfc_profit_PS", "rfc_profit_B365"]]
+        elif classifier == 'Ada Boost (Decision Tree)':
+            clf = joblib.load('archive/model_dtc_abc.pkl')
+            results = profits_test[["dtc_abc_result", "dtc_abc_certainty", "dtc_abc_profit_PS", "dtc_abc_profit_B365"]]
+        elif classifier == 'SVM':
+            clf = joblib.load("archive/model_svm.pkl")
+            results = profits_test[["svm_result", "svm_certainty", "svm_profit_PS", "svm_profit_B365"]]
+        elif classifier == "Soft Voting":
+            clf = joblib.load('archive/model_vc.pkl')
+            results = profits_test[["vc_result", "vc_certainty", "vc_profit_PS", "vc_profit_B365"]]
+        elif classifier == "Neural Network":
+            clf = tf.keras.models.load_model('archive/model_nn.keras')
+            # st.write(clf.summary())
+            results = profits_test[["nn_result", "nn_certainty", "nn_profit_PS", "nn_profit_B365"]]
+        return clf, results
+    
+
+    choice = ["Random Forest", "Ada Boost (Decision Tree)", "SVM", "Soft Voting", "Neural Network"]
+    option = st.selectbox('Choice of the model', choice)
+    st.write('The chosen model is :', option)
+    st.write(f"Here are the (test) results derived from the model {option}")
+    clf, results = prediction(option)
+
+    st.dataframe(results.describe())
+
+    st.write(f"# Test")
+    with st.form("forecast_form"):
+        # st.write((elo_rates["Player"]=="Djokovic N.").argmax(), (elo_rates["Player"]=="Federer R.").argmax())
+        p1 = st.selectbox(label="Player A", options=elo_rates["Player"].values.tolist(), index=84, help=None, on_change=None)
+        p2 = st.selectbox(label="Player B", options=elo_rates["Player"].values.tolist(), index=3, help=None, on_change=None)
+        
+        field_type = st.selectbox(label="Field type", options=["outdoor_hard", "indoor_hard", "outdoor_clay", "outdoor_grass"], help=None, on_change=None)
+
+        # Every form must have a submit button.
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            res = advise(p1=p1, p2=p2, field_type=field_type, model=clf)
+            st.write(f"Prediction: {res["predicted_winner"]},\tCertainty: {res["certainty"]} % *")
+
+        
+    st.write("* certainty is a measure for the prediction confidence. It varies between 0 to 1, with 0 meaning no confidence in the prediction (50 %, 50 % chances), and 1 for the most certain case.")
+
 
 
 if  page == pages[6]:
-    st.write("###Modelling by Patrick")
+    # st.write("###Modelling by Patrick")
+    st.write("# Models with the second set of features")
     st.write("#Data")
     # modeling patrick
     X = top20_rf.drop(['PlayerA_Wins', 'proba_elo_PlayerB_Wins'], axis=1)
