@@ -30,7 +30,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization", "Strategies", "Betting Strategies", "Model_1", "Model_2",'Tennis Match Winner Predictor ', "Summary and Outlook"]
+pages=["Introduction", "Exploration", "Data Vizualization", "Strategies", "Betting Strategies", "Strategy 1", "Strategy 2",'Tennis Match Winner Predictor ', "Summary and Outlook"]
 page=st.sidebar.radio("Go to", pages)
 
 # first page introduction to tennis betting project.
@@ -126,7 +126,7 @@ if  page == pages[2]:
     st.image("archive/top-40-players-tournament-wins.png", caption='Top 40 Players Tournament Wins', use_column_width=True)
 
 if  page == pages[3]:
-    st.write("###Strategies")
+    st.write(" Two Strategies")
     
     st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
 if  page == pages[4]:
