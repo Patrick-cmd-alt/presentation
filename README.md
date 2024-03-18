@@ -1,1 +1,1 @@
-This rep is only for testing streamlit applications for presentation.
+This repo is only for testing streamlit applications for presentation.
