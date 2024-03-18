@@ -29,7 +29,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization","Betting Strategies", "Model_VT", "Model_PS",'Tennis Match Winner Predictor PS', "Summary and Outlook"]
+pages=["Introduction", "Exploration", "Data Vizualization", "Strategies", "Betting Strategies", "Strategy 1", "Strategy 2",'Tennis Match Winner Predictor ', "Summary and Outlook"]
 page=st.sidebar.radio("Go to", pages)
 
 
@@ -128,12 +128,17 @@ if  page == pages[2]:
     st.image("archive/top-40-players-match-wins.png", caption='Top 40 Players Match Wins', use_column_width=True)
     st.image("archive/top-40-players-tournament-wins.png", caption='Top 40 Players Tournament Wins', use_column_width=True)
 
-
 if  page == pages[3]:
-    st.write("# Bet strategies")
-
-
+    st.write(" Two Strategies")
+    
+    st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
+    
+    
 if  page == pages[4]:
+       st.write("# Bet strategies")
+
+
+if  page == pages[5]:
     st.write("# Models with the first set of features")
 
     def advise(p1: str, p2: str, field_type: str, model) -> dict:
@@ -196,7 +201,7 @@ if  page == pages[4]:
 
 
 
-if  page == pages[5]:
+if  page == pages[6]:
     # st.write("###Modelling by Patrick")
     st.write("# Models with the second set of features")
     st.write("#Data")
@@ -248,7 +253,8 @@ if  page == pages[5]:
     
     # to calculate metrics of the different models, uncomment the following code
 
-if  page == pages[6]:
+
+if  page == pages[7]:
     
     st.title('Tennis Match Winner Predictor')
 
@@ -469,7 +475,8 @@ if  page == pages[6]:
     st.write("Probability of",player_A_name,"winning:", probability_player_A_wins)
     st.write("Probability of",player_B_name,"winning:", 1 - probability_player_A_wins)
    
-if  page == pages[7]:
+
+if  page == pages[8]:
     st.write("""
                 We were able to train five different models that can correctly predict three out
             of four tennis matches. Furthermore, we identified the most important features for
