@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
 from sklearn.metrics import confusion_matrix
@@ -12,8 +10,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from joblib import load
-import keras
+import joblib
 import tensorflow as tf
 
 
@@ -127,11 +124,26 @@ if  page == pages[2]:
 
 
 if  page == pages[3]:
-    st.write("###Modelling by Vahid")
+    st.write("#Bet strategies")
 
 
 if  page == pages[4]:
-    st.write("###Modelling by Vahid")
+    st.write("#Modelling by Vahid")
+
+    def prediction(classifier):
+        if classifier == 'Random Forest':
+            clf = joblib.load('archive/model_rf.pkl')
+        elif classifier == 'AdaBoost':
+            clf = joblib.load('archive/model_adc_dtc.pkl')
+        elif classifier == 'SVM':
+            clf = joblib.load("archive/model_svm.pkl")
+        elif classifier == "Voting":
+            clf = joblib.load('archive/model_vc.pkl')
+        elif classifier == "Neural Network":
+            clf = joblib.load('archive/model_nn.keras')
+        return clf
+    
+    
 
 
 if  page == pages[5]:
@@ -143,13 +155,13 @@ if  page == pages[5]:
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=573)
     def prediction(classifier):
         if classifier == 'Random Forest':
-            clf = load('archive/random_forest_model.joblib')
+            clf = joblib.load('archive/random_forest_model.joblib')
         elif classifier == 'AdaBoost':
-            clf = load('archive/adaboost_model.joblib')
+            clf = joblib.load('archive/adaboost_model.joblib')
         elif classifier == 'DecisionTree':
-            clf = load("archive/decision_tree_model.joblib")
+            clf = joblib.load("archive/decision_tree_model.joblib")
         elif classifier == "GradientBoosting":
-            clf = load('archive/gradient_boosting_model.joblib')
+            clf = joblib.load('archive/gradient_boosting_model.joblib')
         return clf
 
     def scores(clf, choice):
@@ -178,27 +190,15 @@ if  page == pages[5]:
     
     st.image("archive/top-10-features.png", caption='Top 10 Features', use_column_width=True)
 
-
-
-    
-
-   
-  
     #   Inserting an image from a file path
     st.image("archive/accuracy-score-models.png", caption='accuracy score models', use_column_width=True) 
-    
-
-  
-    
     
     st.image("archive/betting.png", caption='Betting', use_column_width=True)
     
     # to calculate metrics of the different models, uncomment the following code
 
 if  page == pages[6]:
-   
     
-
     st.title('Tennis Match Winner Predictor')
 
     # Select player A and B by user
@@ -367,8 +367,6 @@ if  page == pages[6]:
 
     # Display an input box for the user to enter a number for Tournament_ID
    
-  
-
     # Assuming df_tournament_ID is a dataframe mapping tournament names to their IDs
     tournament_name = st.selectbox('Select Tournament', df_tournament_ID["Tournament"])
 
@@ -378,7 +376,6 @@ if  page == pages[6]:
     # Update the "Tournament_ID" column in the X_test_user dataframe with the selected tournament ID
     X_test_user["Tournament_ID"] = tournament_name_id
     
-
 
     # Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
 
@@ -401,7 +398,7 @@ if  page == pages[6]:
     X_test_user_mod = X_test_user[["PS_PlayerA","PS_PlayerB","B365_PlayerA", "B365_PlayerB"]]
     st.dataframe(X_test_user_mod)
     #testing predinction
-    clf_user = load('archive/random_forest_model.joblib')
+    clf_user = joblib.load('archive/random_forest_model.joblib')
     ypred_user = clf_user.predict(X_test_user)
     
     if ypred_user == True:
@@ -421,14 +418,6 @@ if  page == pages[6]:
     st.write("Probability of",player_A_name,"winning:", probability_player_A_wins)
     st.write("Probability of",player_B_name,"winning:", 1 - probability_player_A_wins)
    
-
-
-    
-     
-
-
-
-
 if  page == pages[7]:
     st.write("""
                 We were able to train five different models that can correctly predict three out
@@ -457,11 +446,3 @@ if  page == pages[7]:
             variables into their calculations and could enhance our prediction model.
             .
     """)
-
-
-
-
-
-
-
-                
