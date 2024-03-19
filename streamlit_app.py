@@ -96,7 +96,7 @@ if page == pages[1]:
     if st.checkbox("Show Columns TOP 20 Random Forest"):
         st.image("archive/top20rf.png", caption='Top 20 Random Forest', use_column_width=True)
     st.write("features Strategy 1")
-    st.dataframe(features_vahid_df())
+    st.dataframe(features_vahid_df)
    
         
 
