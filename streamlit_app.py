@@ -134,7 +134,7 @@ if  page == pages[3]:
     st.write(" Two Strategies")
     
     st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
-
+    st.image("archive/strategiesframes.png", caption='Strategies', use_column_width=True)
     st.dataframe(features_vahid_df.tail())
     
     
