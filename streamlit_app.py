@@ -37,7 +37,8 @@ pages = [
     "Strategy 1",
     "Strategy 2",
     "Tennis Match Winner Predictor ",
-    "Summary and Outlook", "Disclaimer",
+    "Summary and Outlook",
+    "Disclaimer",
 ]
 page = st.sidebar.radio("Go to", pages)
 
@@ -270,7 +271,6 @@ if page == pages[4]:
     st.write(" Two Strategies")
 
     st.image("archive/strategies.tif", caption="Strategies", use_column_width=True)
-  
 
 
 if page == pages[5]:
@@ -730,38 +730,27 @@ if page == pages[7]:
 
 if page == pages[8]:
     st.write(
-        """* We implemented two strategies to predict the winner of a tennis match. The first strategy, which is independent of odds, can predict the outcome with a 66% accuracy using SVM. This strategy results in a calculated net gain of 0.03 per bet dollar, assuming a bet of one dollar per tennis match.
-            The second strategy, which is dependent on odds, can predict the outcome with a 75% accuracy using Random Forest. However, this strategy will eventually lead to a loss of about 10% of the investment. 
-            A test conducted by betting on 9765 matches resulted in a return on investment of approximately -$1000, assuming a bet of one dollar per tennis match."""
+        "* We implemented two strategies to predict the winner of a tennis match. The first strategy, which is independent of odds, can predict the outcome with a 66% accuracy using SVM. This strategy results in a calculated net gain of 0.03 per bet dollar, assuming a bet of one dollar per tennis match. The second strategy, which is dependent on odds, can predict the outcome with a 75% accuracy using Random Forest. However, this strategy will eventually lead to a loss of about 10% of the investment. A test conducted by betting on 9765 matches resulted in a return on investment of approximately -$1000, assuming a bet of one dollar per tennis match."
     )
 
     st.write(
-        """* Furthermore, we identified the most important features for
-            correctly predicting the outcome of a tennis match. 
-            We also attempted to train our models
-            on matches where both players have a high difference in Elo ratings, making it easier
-            for the algorithm to correctly predict the winner (Data not shown). Although this
-            strategy significantly improves the prediction accuracy, the odds on those games
-            were so low that we wouldn't achieve any positive ROI by betting on them."""
+        "* Furthermore, we identified the most important features for correctly predicting the outcome of a tennis match. We also attempted to train our models on matches where both players have a high difference in Elo ratings, making it easier for the algorithm to correctly predict the winner (Data not shown). Although this strategy significantly improves the prediction accuracy, the odds on those games were so low that we wouldn't achieve any positive ROI by betting on them."
     )
 
     st.write(
-        """* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker. We should be cautious about including them in our model training.
-            The odds set by bookmakers inherently favor the bookmaker and may negatively
-            influence our prediction model. For future prediction models, we should not rely
-            on bookmaker odds and instead focus more on the Elo system as well as calculated
-            features such as a player's specific win ratio against an opponent. It might also be
-            beneficial to aggregate important features into a single variable, such as the win
-            ratio per match at a specific tournament and round. Another way to improve our
-            models would be to utilize advanced neural networks like recurrent neural networks,
-            especially Long Short-Term Memory (LSTM) networks, which incorporate time
-            variables into their calculations and could enhance our prediction model.
-            """
+        "* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker. We should be cautious about including them in our model training. The odds set by bookmakers inherently favor the bookmaker and may negatively impact our prediction model."
     )
 
-    
-    
+    st.write(
+        "* For future prediction models, we should not rely on bookmaker odds and instead focus more on the Elo system as well as calculated features such as a player's specific win ratio against an opponent. It might also be beneficial to aggregate important features into a single variable, such as the win ratio per match at a specific tournament and round."
+    )
+
+    st.write(
+        "* Another way to improve our models would be to utilize advanced neural networks like recurrent neural networks, especially Long Short-Term Memory (LSTM) networks, which incorporate time variables into their calculations and could enhance our prediction model."
+    )
+
+
 if page == pages[9]:
     st.write(
-        """ Betting on tennis matches can pose significant risks and may result in financial loss. It is important to recognize that gambling carries inherent dangers and should be approached with caution. Tennis, like any sport, can be unpredictable, and outcomes may not always align with expectations. Engaging in betting activities should be done responsibly, with full awareness of the potential consequences. Individuals should only wager what they can afford to lose and should refrain from viewing gambling as a guaranteed source of income. Seek appropriate guidance if you believe you may have a gambling problem. Remember, the decision to participate in betting activities ultimately rests with the individual, and any losses incurred are solely their responsibility. """)
-    
+        "Betting on tennis matches can pose significant risks and may result in financial loss. It is important to recognize that gambling carries inherent dangers and should be approached with caution. Tennis, like any sport, can be unpredictable, and outcomes may not always align with expectations. Engaging in betting activities should be done responsibly, with full awareness of the potential consequences. Individuals should only wager what they can afford to lose and should refrain from viewing gambling as a guaranteed source of income. Seek appropriate guidance if you believe you may have a gambling problem. Remember, the decision to participate in betting activities ultimately rests with the individual, and any losses incurred are solely their responsibility."
+    )
