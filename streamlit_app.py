@@ -35,6 +35,7 @@ page=st.sidebar.radio("Go to", pages)
 
 profits_test = pd.read_csv("archive/profits_test.csv", index_col=0)
 elo_rates = pd.read_csv("archive/elo_rates_enriched.csv", index_col=0)
+strategies_df = pd.read_csv("archive/strategies.csv", index_col=0)
 
 # first page introduction to tennis betting project.
 
@@ -135,7 +136,45 @@ if  page == pages[3]:
     
     
 if  page == pages[4]:
-       st.write("# Bet strategies")
+        st.write("# Bet strategies (base lines)")
+
+        st.write("1. To bet on the higher ranked player (HPBS)")
+        st.write("2. To bet on the lower ranked player (LPBS)")
+        st.write("3. To bet on the player with higher total elo rate (HRBS)")
+        st.write("4. To bet on the player with lower total elo rate (LRBS)")
+        st.write("5. To bet on the player with the better elo rate in the appropirate field type (BRFTBS)")
+        st.write("6. To bet on a random player (RPBS)")
+        st.write("7. To bet on the winner always (WBS)")
+        st.write("8. To bet on the loser always (LBS)")
+
+        st.write("Ofcourse, the strategies 7 and 8 are just theoretical and put there to compare the strategies with the theoretical maximum profit/loss.")
+
+        strategies = ["HPBS", "LPBS", "HRBS", "LRBS", "BRFTBS", "RPBS", "WBS", "LBS"]
+
+        def stat_strategies(columns: list[str]) -> pd.DataFrame | None:
+            try:
+                res = strategies_df[columns].describe()
+            except ValueError:
+                res = None
+            return res
+        
+        res = stat_strategies(columns=[])
+
+        st.write("# Profit statistics:")
+        with st.form("forecast_form"):
+            columns = []
+            cells = st.columns(4) + st.columns(4)
+            for i, strat in enumerate(strategies):
+                if cells[i].checkbox(label=f"{strat}", value=False, key=strat):
+                    columns += [f"{strat}_PS", f"{strat}_B365"]
+            if st.form_submit_button("Submit"):
+                try:
+                    res = strategies_df[columns].describe()
+                except ValueError:
+                    res = None
+                
+        if res is not None:
+            st.dataframe(res)
 
 
 if  page == pages[5]:
@@ -184,9 +223,9 @@ if  page == pages[5]:
 
     st.write(f"# Test")
     with st.form("forecast_form"):
-        # st.write((elo_rates["Player"]=="Djokovic N.").argmax(), (elo_rates["Player"]=="Federer R.").argmax())
-        p1 = st.selectbox(label="Player A", options=elo_rates["Player"].values.tolist(), index=84, help=None, on_change=None)
-        p2 = st.selectbox(label="Player B", options=elo_rates["Player"].values.tolist(), index=3, help=None, on_change=None)
+        cells = st.columns(2)
+        p1 = cells[0].selectbox(label="Player A", options=elo_rates["Player"].values.tolist(), index=84, help=None, on_change=None)
+        p2 = cells[1].selectbox(label="Player B", options=elo_rates["Player"].values.tolist(), index=3, help=None, on_change=None)
         
         field_type = st.selectbox(label="Field type", options=["outdoor_hard", "indoor_hard", "outdoor_clay", "outdoor_grass"], help=None, on_change=None)
 
@@ -194,10 +233,14 @@ if  page == pages[5]:
         submitted = st.form_submit_button("Submit")
         if submitted:
             res = advise(p1=p1, p2=p2, field_type=field_type, model=clf)
-            st.write(f"Prediction: {res["predicted_winner"]},\tCertainty: {res["certainty"]} % *")
+            cells = st.columns(2)
+            cells[0].text(f"Prediction: {res["predicted_winner"]}")
+            cells[1].text(f"Certainty: {res["certainty"]} % *")
 
         
-    st.write("* certainty is a measure for the prediction confidence. It varies between 0 to 1, with 0 meaning no confidence in the prediction (50 %, 50 % chances), and 1 for the most certain case.")
+    st.text("""* Certainty is a measure for the prediction confidence. It varies
+between 0 to 1, with 0 meaning no confidence in the prediction (50%, 50% chances),
+and 1 for the most certain case.""")
 
 
 
