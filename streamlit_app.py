@@ -380,7 +380,7 @@ and 1 for the most certain case."""
 if page == pages[6]:
     # st.write("###Modelling by Patrick")
     st.write("# Models with the second set of features")
-    st.write("#Data")
+    
     # modeling patrick
     X = top20_rf.drop(["PlayerA_Wins", "proba_elo_PlayerB_Wins"], axis=1)
     y = top20_rf["PlayerA_Wins"]
