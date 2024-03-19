@@ -29,7 +29,7 @@ top20_rf = pd.read_csv("archive/Patrick_top20.csv")
 # defines streamlit layout
 st.title("Tennis prediction project : binary classification project")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Exploration", "Data Vizualization", "Strategies", "Base lines", "Strategy 1", "Strategy 2",'Tennis Match Winner Predictor ', "Summary and Outlook"]
+pages=["Introduction", "Exploration", "Data Vizualization", "Base lines", "Strategies", "Strategy 1", "Strategy 2",'Tennis Match Winner Predictor ', "Summary and Outlook"]
 page=st.sidebar.radio("Go to", pages)
 
 
@@ -129,16 +129,8 @@ if  page == pages[2]:
     st.image("archive/top-25-elo-rates.png", caption='Top 25 Elo Rates', use_column_width=True)
     st.image("archive/top-40-players-match-wins.png", caption='Top 40 Players Match Wins', use_column_width=True)
     st.image("archive/top-40-players-tournament-wins.png", caption='Top 40 Players Tournament Wins', use_column_width=True)
-
+        
 if  page == pages[3]:
-    st.write(" Two Strategies")
-    
-    st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
-    st.image("archive/stragetiesframes.png", caption='Strategies', use_column_width=True)
-    st.dataframe(features_vahid_df.tail())
-    
-    
-if  page == pages[4]:
         st.write("# Bet strategies (base lines)")
 
         st.write("1. To bet on the higher ranked player (HPBS)")
@@ -179,6 +171,12 @@ if  page == pages[4]:
         if res is not None:
             st.dataframe(res)
 
+if  page == pages[4]:
+    st.write(" Two Strategies")
+    
+    st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
+    st.image("archive/stragetiesframes.png", caption='Strategies', use_column_width=True)
+    st.dataframe(features_vahid_df.tail())
 
 if  page == pages[5]:
     st.write("# Models with the first set of features")
