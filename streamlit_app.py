@@ -534,8 +534,7 @@ if  page == pages[7]:
    
 
 if  page == pages[8]:
-    st.write("""
-            * We were able to train five different models that can correctly predict three out
+    st.write("""* We were able to train five different models that can correctly predict three out
             of four tennis matches.""")
     
     st.write("""* Furthermore, we identified the most important features for
@@ -547,12 +546,12 @@ if  page == pages[8]:
             strategy significantly improves the prediction accuracy, the odds on those games
             were so low that we wouldn't achieve any positive ROI by betting on them.""")
             
-    st.write("""* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker
-            37
-            FIG. 25. Confusion matrix of Decision Tree, Random Forest, AdaBoost and Gradient
+    st.write("""* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker.
+            Confusion matrix of Decision Tree, Random Forest, AdaBoost and Gradient
             Boosting. The confusion matrix has been produced with the predicted values for each
-            model compared to the y_test (Player A wins) set.
-            in the long run, we should be cautious about including them in our model training.
+            model compared to the y_test (Player A wins) set.""")
+    
+    st.write("""* In the long run, we should be cautious about including them in our model training.
             The odds set by bookmakers inherently favor the bookmaker and may negatively
             influence our prediction model. For future prediction models, we should not rely
             on bookmaker odds and instead focus more on the Elo system as well as calculated
