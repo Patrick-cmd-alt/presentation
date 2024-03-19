@@ -151,7 +151,7 @@ if  page == pages[4]:
 
         strategies = ["HPBS", "LPBS", "HRBS", "LRBS", "BRFTBS", "RPBS", "WBS", "LBS"]
 
-        def stat_strategies(columns: list[str]) -> pd.DataFrame | None:
+        def stat_strategies(columns: list[str]) -> pd.DataFrame:
             try:
                 res = strategies_df[columns].describe()
             except ValueError:
