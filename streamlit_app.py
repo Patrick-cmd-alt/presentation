@@ -269,10 +269,8 @@ if page == pages[3]:
 if page == pages[4]:
     st.write(" Two Strategies")
 
-    st.image("archive/Slide1.tiff", caption="Strategies", use_column_width=True)
-    st.image(
-        "archive/stragetiesframes.png", caption="Strategies", use_column_width=True
-    )
+    st.image("archive/strategies.tiff", caption="Strategies", use_column_width=True)
+  
 
 
 if page == pages[5]:
