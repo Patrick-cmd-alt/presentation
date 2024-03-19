@@ -730,15 +730,19 @@ if page == pages[7]:
 
 if page == pages[8]:
     st.write(
-        """* We were able to train five different models that can correctly predict three out
-            of four tennis matches."""
+        """* We implemented two strategies to predict the winner of a tennis match.
+
+            The first strategy, which is independent of odds, can predict the outcome with a 66% accuracy using SVM. This strategy results in a calculated net gain of $0.03 per bet dollar, assuming a bet of one dollar per tennis match.
+
+            The second strategy, which is dependent on odds, can predict the outcome with a 75% accuracy using Random Forest. However, this strategy will eventually lead to a loss of about 10% of the investment. 
+            A test conducted by betting on 9765 matches resulted in a return on investment of approximately -$1000, assuming a bet of one dollar per tennis match."""
     )
 
     st.write(
         """* Furthermore, we identified the most important features for
-            correctly predicting the outcome of a tennis match. Unfortunately, the prediction
-            accuracy of about 75% is not enough to generate a positive return on investment
-            (ROI) using the odds from Pinnacle Sports. We also attempted to train our models
+            correctly predicting the outcome of a tennis match. 
+            
+            We also attempted to train our models
             on matches where both players have a high difference in Elo ratings, making it easier
             for the algorithm to correctly predict the winner (Data not shown). Although this
             strategy significantly improves the prediction accuracy, the odds on those games
