@@ -746,14 +746,7 @@ if page == pages[8]:
     )
 
     st.write(
-        """* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker.
-            Confusion matrix of Decision Tree, Random Forest, AdaBoost and Gradient
-            Boosting. The confusion matrix has been produced with the predicted values for each
-            model compared to the y_test (Player A wins) set."""
-    )
-
-    st.write(
-        """* In the long run, we should be cautious about including them in our model training.
+        """* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker. We should be cautious about including them in our model training.
             The odds set by bookmakers inherently favor the bookmaker and may negatively
             influence our prediction model. For future prediction models, we should not rely
             on bookmaker odds and instead focus more on the Elo system as well as calculated
@@ -762,5 +755,10 @@ if page == pages[8]:
             ratio per match at a specific tournament and round. Another way to improve our
             models would be to utilize advanced neural networks like recurrent neural networks,
             especially Long Short-Term Memory (LSTM) networks, which incorporate time
-            variables into their calculations and could enhance our prediction model."""
+            variables into their calculations and could enhance our prediction model.
+            """
+    )
+
+    st.write(
+        """* """
     )
