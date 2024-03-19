@@ -234,8 +234,8 @@ if  page == pages[5]:
         if submitted:
             res = advise(p1=p1, p2=p2, field_type=field_type, model=clf)
             cells = st.columns(2)
-            cells[0].text(f"Prediction: {res["predicted_winner"]}")
-            cells[1].text(f"Certainty: {res["certainty"]} % *")
+            cells[0].text(f"Prediction: {res['predicted_winner']}")
+            cells[1].text(f"Certainty: {res['certainty']} % *")
 
         
     st.text("""* Certainty is a measure for the prediction confidence. It varies
