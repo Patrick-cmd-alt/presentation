@@ -96,6 +96,7 @@ if page == pages[1]:
     if st.checkbox("Show Columns TOP 20 Random Forest"):
         st.image("archive/top20rf.png", caption='Top 20 Random Forest', use_column_width=True)
 
+    st.dataframe(features_vahid_df.tail())
    
         
 
@@ -176,7 +177,7 @@ if  page == pages[4]:
     
     st.image("archive/Slide1.tiff", caption='Strategies', use_column_width=True)
     st.image("archive/stragetiesframes.png", caption='Strategies', use_column_width=True)
-    st.dataframe(features_vahid_df.tail())
+
 
 if  page == pages[5]:
     st.write("# Models with the first set of features")
