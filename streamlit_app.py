@@ -95,8 +95,8 @@ if page == pages[1]:
 # write is like print in python and st.dataframe displays the dataframe 
     if st.checkbox("Show Columns TOP 20 Random Forest"):
         st.image("archive/top20rf.png", caption='Top 20 Random Forest', use_column_width=True)
-
-    st.dataframe(features_vahid_df.tail())
+    st.write("features Strategy 1")
+    st.dataframe(features_vahid_df())
    
         
 
