@@ -336,7 +336,7 @@ def get_feats(
     )
 
 
-def get_advise(input: dict | pd.DataFrame, model) -> pd.DataFrame:
+def get_advise(input: pd.DataFrame, model) -> pd.DataFrame:
 
     if isinstance(input, dict):
         input = pd.DataFrame(input)
