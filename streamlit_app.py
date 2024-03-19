@@ -302,6 +302,8 @@ if  page == pages[6]:
     
     # to calculate metrics of the different models, uncomment the following code
 
+    st.write(f"Total number of matches: {len(y_test)}")
+
 
 if  page == pages[7]:
     
@@ -533,16 +535,19 @@ if  page == pages[7]:
 
 if  page == pages[8]:
     st.write("""
-                We were able to train five different models that can correctly predict three out
-            of four tennis matches. Furthermore, we identified the most important features for
+            * We were able to train five different models that can correctly predict three out
+            of four tennis matches.""")
+    
+    st.write("""* Furthermore, we identified the most important features for
             correctly predicting the outcome of a tennis match. Unfortunately, the prediction
             accuracy of about 75% is not enough to generate a positive return on investment
             (ROI) using the odds from Pinnacle Sports. We also attempted to train our models
             on matches where both players have a high difference in Elo ratings, making it easier
             for the algorithm to correctly predict the winner (Data not shown). Although this
             strategy significantly improves the prediction accuracy, the odds on those games
-            were so low that we wouldn’t achieve any positive ROI by betting on them. Since
-            bookmakers’ odds are designed to ensure a positive net income for the bookmaker
+            were so low that we wouldn't achieve any positive ROI by betting on them.""")
+            
+    st.write("""* Since bookmakers' odds are designed to ensure a positive net income for the bookmaker
             37
             FIG. 25. Confusion matrix of Decision Tree, Random Forest, AdaBoost and Gradient
             Boosting. The confusion matrix has been produced with the predicted values for each
@@ -551,11 +556,9 @@ if  page == pages[8]:
             The odds set by bookmakers inherently favor the bookmaker and may negatively
             influence our prediction model. For future prediction models, we should not rely
             on bookmaker odds and instead focus more on the Elo system as well as calculated
-            features such as a player’s specific win ratio against an opponent. It might also be
+            features such as a player's specific win ratio against an opponent. It might also be
             beneficial to aggregate important features into a single variable, such as the win
             ratio per match at a specific tournament and round. Another way to improve our
             models would be to utilize advanced neural networks like recurrent neural networks,
             especially Long Short-Term Memory (LSTM) networks, which incorporate time
-            variables into their calculations and could enhance our prediction model.
-            .
-    """)
+            variables into their calculations and could enhance our prediction model.""")
