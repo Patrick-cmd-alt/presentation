@@ -730,7 +730,7 @@ if page == pages[7]:
 
 if page == pages[8]:
     st.write(
-        """* We implemented two strategies to predict the winner of a tennis match. The first strategy, which is independent of odds, can predict the outcome with a 66% accuracy using SVM. This strategy results in a calculated net gain of $0.03 per bet dollar, assuming a bet of one dollar per tennis match.
+        """* We implemented two strategies to predict the winner of a tennis match. The first strategy, which is independent of odds, can predict the outcome with a 66% accuracy using SVM. This strategy results in a calculated net gain of 0.03 per bet dollar, assuming a bet of one dollar per tennis match.
             The second strategy, which is dependent on odds, can predict the outcome with a 75% accuracy using Random Forest. However, this strategy will eventually lead to a loss of about 10% of the investment. 
             A test conducted by betting on 9765 matches resulted in a return on investment of approximately -$1000, assuming a bet of one dollar per tennis match."""
     )
