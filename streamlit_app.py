@@ -45,7 +45,7 @@ if  page == pages[0]:
     st.write("""
     In the following work, we aim to design a machine learning model, employing
     standard ML algorithms like Decision Tree, Random Forest, Support Vector Machine (SVM), 
-    and more advanced deep learning models like Convolutional Neural Network (CNN), capable 
+    and more advanced deep learning models like Dense Neural Network (NN), capable 
     of predicting the outcomes of tennis matches played on the ATP tour. We aim to better 
     understand which features influence the outcome of a tennis game. Additionally, we 
     intend to develop a betting strategy that minimizes investment losses and maximizes 
@@ -87,12 +87,13 @@ if page == pages[1]:
 
     # top 20 data frame 
     top20_rf_mod = top20_rf.drop(["PlayerA_Wins", "proba_elo_PlayerB_Wins"], axis=1)
-    st.write("Top 20 features for Random Forest")
+    
 
-    sbs = st.selectbox(label="features:", options=["Strategy 1", "Strategy 2"], help=None, on_change=None)
+    sbs = st.selectbox(label="Final data frames:", options=["Strategy 1", "Strategy 2"], help=None, on_change=None)
     if sbs == "Strategy 1":
         st.dataframe(features_vahid_df)
     elif sbs == "Strategy 2":
+        st.write("Top 20 features for Random Forest")
         st.dataframe(top20_rf_mod)
 
     st.write(top20_rf_mod.shape)
@@ -306,12 +307,28 @@ if  page == pages[7]:
     
     st.title('Tennis Match Winner Predictor')
 
-    # Select player A and B by user
-    player_A_name = st.selectbox('Select Player A', df_names["Name"])
-    player_B_name = st.selectbox('Select Player B', df_names["Name"])
-    player_A_id = df_names.loc[df_names['Name'] == player_A_name, 'ID'].iloc[0]
-    player_B_id = df_names.loc[df_names['Name'] == player_B_name, 'ID'].iloc[0]
-
+    # Columns related to Player A
+    columns_PlayerA = [
+    'elo_PlayerA',
+    'PlayerA_Pts',
+    'Wins_Player_A',
+    'Wins_Per_Match_ratio_PlayerA',
+    'Wins_Per_Match_Ratio_PlayerA_Hard',
+    'Wins_Per_Match_Ratio_PlayerA_Grass',
+    'Wins_Per_Match_Ratio_PlayerA_Clay'
+    ]
+    
+    # Columns related to Player B
+    columns_PlayerB = [
+    'elo_PlayerB',
+    'PlayerB_Pts',
+    'Wins_Player_B',
+    'Wins_Per_Match_ratio_PlayerB',
+    'Wins_Per_Match_Ratio_PlayerB_Hard',
+    'Wins_Per_Match_Ratio_PlayerB_Grass',
+    'Wins_Per_Match_Ratio_PlayerB_Clay'
+    ]
+    
     # Lists of columns for Player A and Player B stats
     player_A_columns = ["PS_PlayerA",
                         "Wins_Per_Match_ratio_PlayerA",
@@ -323,7 +340,7 @@ if  page == pages[7]:
                         "Wins_Per_Match_Ratio_PlayerA_Clay",
                         "elo_PlayerA",
                         "Wins_Player_A"]
-
+    
     player_B_columns = ["PS_PlayerB",
                         "Wins_Per_Match_ratio_PlayerB",
                         "B365_PlayerB",
@@ -334,97 +351,6 @@ if  page == pages[7]:
                         "Wins_Per_Match_Ratio_PlayerB_Clay",
                         "elo_PlayerB",
                         "Wins_Player_B"]
-
-    # Initialize empty DataFrames to store player A and player B stats
-    player_A_stats = pd.DataFrame(columns=player_A_columns)
-    player_B_stats = pd.DataFrame(columns=player_B_columns)
-
-    # Flag to keep track of whether player A data is found
-    player_A_found = False
-
-    # Iterate through df2 from bottom to top for Player A
-    for index, row in df2[::-1].iterrows():
-        if player_A_found:
-            break
-        # Check if the ID matches player_A_id
-        if row["PlayerA_ID"] == player_A_id:
-            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
-            player_A_found = True
-        # Check if the ID matches player_B_id
-        elif row["PlayerB_ID"] == player_A_id:
-            # Swap Player A and Player B stats
-            for col in player_A_columns:
-                if "Wins_Player_A" in col:
-                    row[col], row[col.replace("Wins_Player_A", "Wins_Player_B")] = row[col.replace("Wins_Player_A", "Wins_Player_B")], row[col]
-                else:
-                    row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
-            player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
-            player_A_found = True
-
-    # Flag to keep track of whether player B data is found
-    player_B_found = False
-
-    # Iterate through df2 from bottom to top for Player B
-    for index, row in df2[::-1].iterrows():
-        if player_B_found:
-            break
-        # Check if the ID matches player_B_id
-        if row["PlayerA_ID"] == player_B_id:
-            # Swap Player A and Player B stats
-            for col in player_B_columns:
-                if "Wins_Player_B" in col:
-                    row[col], row[col.replace("Wins_Player_B", "Wins_Player_A")] = row[col.replace("Wins_Player_B", "Wins_Player_A")], row[col]
-                else:
-                    row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
-            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
-            player_B_found = True
-        # Check if the ID matches player_B_id
-        elif row["PlayerB_ID"] == player_B_id:
-            player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
-            player_B_found = True
-
-    # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
-    #st.dataframe(player_A_stats)
-    #st.dataframe(player_B_stats)
-
-    # only display certain values, which will be fixed for calculation the other values will be added by the usher        
-    # These data frames are used for visualization for the user
-    
-    # Columns related to Player A
-    columns_PlayerA = [
-    'elo_PlayerA',
-    'PlayerA_Pts',
-    'Wins_Player_A',
-    'Wins_Per_Match_ratio_PlayerA',
-    'Wins_Per_Match_Ratio_PlayerA_Hard',
-    'Wins_Per_Match_Ratio_PlayerA_Grass',
-    'Wins_Per_Match_Ratio_PlayerA_Clay'
-        ]
-
-    # Columns related to Player B
-    columns_PlayerB = [
-    'elo_PlayerB',
-    'PlayerB_Pts',
-    'Wins_Player_B',
-    'Wins_Per_Match_ratio_PlayerB',
-    'Wins_Per_Match_Ratio_PlayerB_Hard',
-    'Wins_Per_Match_Ratio_PlayerB_Grass',
-    'Wins_Per_Match_Ratio_PlayerB_Clay'
-       ]
-
-    # Select columns for player A and player B
-    player_A_stats_mod = player_A_stats[columns_PlayerA]
-    player_B_stats_mod = player_B_stats[columns_PlayerB]
-
-    st.dataframe(player_A_stats_mod)
-    st.dataframe(player_B_stats_mod)
-    # merging user created dataframes
-  
-   # Merge player_B_stats into player_A_stats dataframe
-   
-
-    X_test_user = player_A_stats.merge(player_B_stats, left_index=True, right_index=True)
-
     
     # Define the desired column order
     desired_column_order = [
@@ -448,80 +374,161 @@ if  page == pages[7]:
     'Wins_Player_A',
     'Wins_Player_B',
     'Tournament_ID',
-
     'proba_elo_PlayerB_Wins'
-                            ]
+    ]
 
-    # Reorder the columns of X_test_user dataframe
-    X_test_user = X_test_user.reindex(columns=desired_column_order)
-    # Get the Elo ratings of player A and player B from the dataframe
-    elo_PlayerA = X_test_user.at[0, 'elo_PlayerA']
-    elo_PlayerB = X_test_user.at[0, 'elo_PlayerB']
+    with st.form("forecast_form"):
+        # Select player A and B by user
+        player_A_name = st.selectbox('Select Player A', df_names["Name"])
+        player_B_name = st.selectbox('Select Player B', df_names["Name"])
 
-    # Calculate the proba_elo_PlayerA_Wins using the given formula
-    proba_elo_PlayerA_Wins = 1 / (1 + 10**((elo_PlayerB - elo_PlayerA) / 400))
+        player_A_id = df_names.loc[df_names['Name'] == player_A_name, 'ID'].iloc[0]
+        player_B_id = df_names.loc[df_names['Name'] == player_B_name, 'ID'].iloc[0]
 
-    # Update the value of proba_elo_PlayerA_Wins in the dataframe
-    X_test_user.at[0, 'proba_elo_PlayerA_Wins'] = proba_elo_PlayerA_Wins
+        
 
+        # Initialize empty DataFrames to store player A and player B stats
+        player_A_stats = pd.DataFrame(columns=player_A_columns)
+        player_B_stats = pd.DataFrame(columns=player_B_columns)
 
-    # Drop the column "proba_elo_PlayerB_Wins" from X_test_user
-    X_test_user.drop(columns=["proba_elo_PlayerB_Wins"], inplace=True)
-    # Add a new column named "Tournament_ID" with initial value 0 to the X_test_user dataframe
-    X_test_user["Tournament_ID"] = 0
+        # Flag to keep track of whether player A data is found
+        player_A_found = False
 
-    # Display an input box for the user to enter a number for Tournament_ID
-   
-    # Assuming df_tournament_ID is a dataframe mapping tournament names to their IDs
-    tournament_name = st.selectbox('Select Tournament', df_tournament_ID["Tournament"])
+        # Iterate through df2 from bottom to top for Player A
+        for index, row in df2[::-1].iterrows():
+            if player_A_found:
+                break
+            # Check if the ID matches player_A_id
+            if row["PlayerA_ID"] == player_A_id:
+                player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
+                player_A_found = True
+            # Check if the ID matches player_B_id
+            elif row["PlayerB_ID"] == player_A_id:
+                # Swap Player A and Player B stats
+                for col in player_A_columns:
+                    if "Wins_Player_A" in col:
+                        row[col], row[col.replace("Wins_Player_A", "Wins_Player_B")] = row[col.replace("Wins_Player_A", "Wins_Player_B")], row[col]
+                    else:
+                        row[col], row[col.replace("PlayerA", "PlayerB")] = row[col.replace("PlayerA", "PlayerB")], row[col]
+                player_A_stats = pd.concat([player_A_stats, pd.DataFrame(row[player_A_columns]).transpose()], ignore_index=True)
+                player_A_found = True
 
-    # Get the corresponding tournament ID from df_tournament_ID based on the selected tournament name
-    tournament_name_id = df_tournament_ID.loc[df_tournament_ID['Tournament'] == tournament_name, 'Tournament_ID'].iloc[0]
+        # Flag to keep track of whether player B data is found
+        player_B_found = False
 
-    # Update the "Tournament_ID" column in the X_test_user dataframe with the selected tournament ID
-    X_test_user["Tournament_ID"] = tournament_name_id
+        # Iterate through df2 from bottom to top for Player B
+        for index, row in df2[::-1].iterrows():
+            if player_B_found:
+                break
+            # Check if the ID matches player_B_id
+            if row["PlayerA_ID"] == player_B_id:
+                # Swap Player A and Player B stats
+                for col in player_B_columns:
+                    if "Wins_Player_B" in col:
+                        row[col], row[col.replace("Wins_Player_B", "Wins_Player_A")] = row[col.replace("Wins_Player_B", "Wins_Player_A")], row[col]
+                    else:
+                        row[col], row[col.replace("PlayerB", "PlayerA")] = row[col.replace("PlayerB", "PlayerA")], row[col]
+                player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
+                player_B_found = True
+            # Check if the ID matches player_B_id
+            elif row["PlayerB_ID"] == player_B_id:
+                player_B_stats = pd.concat([player_B_stats, pd.DataFrame(row[player_B_columns]).transpose()], ignore_index=True)
+                player_B_found = True
+
+        # Now player_A_stats contains the stats for player A and player_B_stats contains the stats for player B
+        #st.dataframe(player_A_stats)
+        #st.dataframe(player_B_stats)
+
+        # only display certain values, which will be fixed for calculation the other values will be added by the usher        
+        # These data frames are used for visualization for the user
+
+        
+
+        # Select columns for player A and player B
+        player_A_stats_mod = player_A_stats[columns_PlayerA]
+        player_B_stats_mod = player_B_stats[columns_PlayerB]
+
+        st.dataframe(player_A_stats_mod)
+        st.dataframe(player_B_stats_mod)
+        # merging user created dataframes
+    
+   #     Merge player_B_stats into player_A_stats dataframe
     
 
-    # Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
-
-    # Ask the user to input odds for Player A and Player B for Pinnacle
-    pinnacle_odds_PlayerA = st.number_input("Enter odds for Player A in Pinnacle:", min_value=0.0)
-    pinnacle_odds_PlayerB = st.number_input("Enter odds for Player B in Pinnacle:", min_value=0.0)
-
-    # Ask the user to input odds for Player A and Player B for Bet365
-    bet365_odds_PlayerA = st.number_input("Enter odds for Player A in Bet365:", min_value=0.0)
-    bet365_odds_PlayerB = st.number_input("Enter odds for Player B in Bet365:", min_value=0.0)
-
-    # Update the corresponding columns in the X_test_user dataframe with the user inputs
-    X_test_user.loc[0, 'PS_PlayerA'] = pinnacle_odds_PlayerA
-    X_test_user.loc[0, 'PS_PlayerB'] = pinnacle_odds_PlayerB
-    X_test_user.loc[0, 'B365_PlayerA'] = bet365_odds_PlayerA
-    X_test_user.loc[0, 'B365_PlayerB'] = bet365_odds_PlayerB
+        X_test_user = player_A_stats.merge(player_B_stats, left_index=True, right_index=True)
 
 
-    # Print the merged dataframe
-    X_test_user_mod = X_test_user[["PS_PlayerA","PS_PlayerB","B365_PlayerA", "B365_PlayerB"]]
-    st.dataframe(X_test_user_mod)
-    #testing predinction
-    clf_user = joblib.load('archive/random_forest_model.joblib')
-    ypred_user = clf_user.predict(X_test_user)
+        # Reorder the columns of X_test_user dataframe
+        X_test_user = X_test_user.reindex(columns=desired_column_order)
+        # Get the Elo ratings of player A and player B from the dataframe
+        elo_PlayerA = X_test_user.at[0, 'elo_PlayerA']
+        elo_PlayerB = X_test_user.at[0, 'elo_PlayerB']
+
+        # Calculate the proba_elo_PlayerA_Wins using the given formula
+        proba_elo_PlayerA_Wins = 1 / (1 + 10**((elo_PlayerB - elo_PlayerA) / 400))
+
+        # Update the value of proba_elo_PlayerA_Wins in the dataframe
+        X_test_user.at[0, 'proba_elo_PlayerA_Wins'] = proba_elo_PlayerA_Wins
+
+
+        # Drop the column "proba_elo_PlayerB_Wins" from X_test_user
+        X_test_user.drop(columns=["proba_elo_PlayerB_Wins"], inplace=True)
+        # Add a new column named "Tournament_ID" with initial value 0 to the X_test_user dataframe
+        X_test_user["Tournament_ID"] = 0
+
+        # Display an input box for the user to enter a number for Tournament_ID
     
-    if ypred_user == True:
-        st.write(player_A_name, "will be the winner")
-    else:
-        st.write (player_B_name, "will be the winner")
-  
-    # Assuming ypred_user contains the predicted probabilities for each class
+        # Assuming df_tournament_ID is a dataframe mapping tournament names to their IDs
+        tournament_name = st.selectbox('Select Tournament', df_tournament_ID["Tournament"])
 
-    # Get the predicted probabilities for each class
-    predicted_probabilities = clf_user.predict_proba(X_test_user)
+        # Get the corresponding tournament ID from df_tournament_ID based on the selected tournament name
+        tournament_name_id = df_tournament_ID.loc[df_tournament_ID['Tournament'] == tournament_name, 'Tournament_ID'].iloc[0]
 
-    # Get the probability of Player A winning (class 1)
-    probability_player_A_wins = predicted_probabilities[0, 1]  # Assuming class 1 represents Player A winning
+        # Update the "Tournament_ID" column in the X_test_user dataframe with the selected tournament ID
+        X_test_user["Tournament_ID"] = tournament_name_id
 
-    # Display the probability
-    st.write("Probability of",player_A_name,"winning:", probability_player_A_wins)
-    st.write("Probability of",player_B_name,"winning:", 1 - probability_player_A_wins)
+
+        # Assuming X_test_user is the dataframe containing the columns PS_PlayerA, PS_PlayerB, B365_PlayerA, and B365_PlayerB
+
+        # Ask the user to input odds for Player A and Player B for Pinnacle
+        pinnacle_odds_PlayerA = st.number_input("Enter odds for Player A in Pinnacle:", min_value=0.0)
+        pinnacle_odds_PlayerB = st.number_input("Enter odds for Player B in Pinnacle:", min_value=0.0)
+
+        # Ask the user to input odds for Player A and Player B for Bet365
+        bet365_odds_PlayerA = st.number_input("Enter odds for Player A in Bet365:", min_value=0.0)
+        bet365_odds_PlayerB = st.number_input("Enter odds for Player B in Bet365:", min_value=0.0)
+
+        if st.form_submit_button("Submit"):
+            # Update the corresponding columns in the X_test_user dataframe with the user inputs
+            X_test_user.loc[0, 'PS_PlayerA'] = pinnacle_odds_PlayerA
+            X_test_user.loc[0, 'PS_PlayerB'] = pinnacle_odds_PlayerB
+            X_test_user.loc[0, 'B365_PlayerA'] = bet365_odds_PlayerA
+            X_test_user.loc[0, 'B365_PlayerB'] = bet365_odds_PlayerB
+
+
+            # Print the merged dataframe
+            X_test_user_mod = X_test_user[["PS_PlayerA","PS_PlayerB","B365_PlayerA", "B365_PlayerB"]]
+            st.dataframe(X_test_user_mod)
+            #testing predinction
+            clf_user = joblib.load('archive/random_forest_model.joblib')
+            ypred_user = clf_user.predict(X_test_user)
+
+            if ypred_user == True:
+                st.write(player_A_name, "will be the winner")
+            else:
+                st.write (player_B_name, "will be the winner")
+
+            # Assuming ypred_user contains the predicted probabilities for each class
+
+            # Get the predicted probabilities for each class
+            predicted_probabilities = clf_user.predict_proba(X_test_user)
+
+            # Get the probability of Player A winning (class 1)
+            probability_player_A_wins = predicted_probabilities[0, 1]  # Assuming class 1 represents Player A winning
+
+            # Display the probability
+            st.write("Probability of",player_A_name,"winning:", probability_player_A_wins)
+            st.write("Probability of",player_B_name,"winning:", 1 - probability_player_A_wins)
    
 
 if  page == pages[8]:
