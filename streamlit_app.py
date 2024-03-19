@@ -88,15 +88,22 @@ if page == pages[1]:
     # top 20 data frame 
     top20_rf_mod = top20_rf.drop(["PlayerA_Wins", "proba_elo_PlayerB_Wins"], axis=1)
     st.write("Top 20 features for Random Forest")
-    st.dataframe(top20_rf_mod)
+
+    st.write("features:")
+    sbs = st.selectbox(label="Player A", options=["Strategy 1", "Strategy 2"], index=84, help=None, on_change=None)
+    if sbs == "Strategy 1":
+        st.dataframe(features_vahid_df)
+    elif sbs == "Strategy 2":
+        st.dataframe(top20_rf_mod)
+        
     st.write(top20_rf_mod.shape)
     if st.checkbox("Show Description of Top 20 Random Forest"):
         st.dataframe(top20_rf_mod.describe())
 # write is like print in python and st.dataframe displays the dataframe 
     if st.checkbox("Show Columns TOP 20 Random Forest"):
         st.image("archive/top20rf.png", caption='Top 20 Random Forest', use_column_width=True)
-    st.write("features Strategy 1")
-    st.dataframe(features_vahid_df)
+    
+    
    
         
 
